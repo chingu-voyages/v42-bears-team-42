@@ -3,9 +3,9 @@ import React from "react";
 function SignIn() {
   return (
     <>
-      <div className="flex shadow-md">
-        <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white">
-          <div className="w-72">
+      <div className="w-1/2 md:w-1/3 flex shadow-md">
+        <div className="flex flex-wrap w-full content-center justify-center rounded-l-md bg-white">
+          <div className="w-full">
             <h1 className="text-3xl font-semibold text-center">Hello!</h1>
             <small className="text-gray-400 text-center">
               Welcome, please sign in using your employee account.
