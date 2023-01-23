@@ -1,4 +1,4 @@
-const Employee = require('../models/employee');
+const Employee = require('./EmployeeController');
 
 const signUp = async (req, res, next) => {
   console.log('auth controller signup');
@@ -19,11 +19,11 @@ const signIn = async (req, res, next) => {
   }
 
   try {
-    const user = await User.findOne({ email }).select("+password");
+    const Employee = await Employee.findOne({ email }).select("+password");
 
-    if(!user) res.status(404).json({ success: false, error: "Invalid credentials" });
+    if(!Employee) res.status(404).json({ success: false, error: "Invalid credentials" });
 
-    const isMatch = await user.matchPasswords(password);
+    const isMatch = await Employee.matchPasswords(password);
 
     if(!isMatch) res.status(404).json({ success: false, error: "Invalid credentials" });
 
