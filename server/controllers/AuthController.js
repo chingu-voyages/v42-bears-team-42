@@ -1,14 +1,20 @@
 const Employee = require('./EmployeeController');
 
+// Should we do matchPasswords here, the employee controller or the employee model. Probably the model so it's just a
+// matter of passing back the req.password to where the bcrypt already is.
+
 const signUp = async (req, res, next) => {
   console.log('auth controller signup');
-  try {
-    const { firstName, lastName, email, password } = req.body;
-    const employee = await Employee.create({ firstName, lastName, email, password });
-    res.status(201).json({ success: true, employee });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
+  // create Manager employee, send whole req to controller after adding access: manager to the req 
+  // send email address verification email, which auto-logs them in once verified from clicking link/button in email
+
+  // try {
+  //   const { firstName, lastName, email, password } = req.body;
+  //   const employee = await Employee.create({ firstName, lastName, email, password });
+  //   res.status(201).json({ success: true, employee });
+  // } catch (error) {
+  //   res.status(500).json({ success: false, error: error.message });
+  // }
 }
 
 const signIn = async (req, res, next) => {
@@ -19,7 +25,7 @@ const signIn = async (req, res, next) => {
   }
 
   try {
-    const Employee = await Employee.findOne({ email }).select("+password");
+    const Employee = await Employee.getOneEmployee({ email }).select("+password");
 
     if(!Employee) res.status(404).json({ success: false, error: "Invalid credentials" });
 
@@ -27,7 +33,7 @@ const signIn = async (req, res, next) => {
 
     if(!isMatch) res.status(404).json({ success: false, error: "Invalid credentials" });
 
-    res.status(200).json({ success: true, token: "wefwfwe" });
+    // res.status(200).json({ success: true, token: "wefwfwe" });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

@@ -33,4 +33,20 @@ const EmployeeSchema = new mongoose.Schema({
     
 });
 
+// While saving an instance of a model, encrypt password if different than what's saved
+userSchema.pre('save', async function(next){
+  if(!this.isModified("password")) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+})
+
+// Called by AuthController during Sign In
+userSchema.methods.matchPasswords = async function(password) {
+  return await bcrypt.compare(password, this.password);
+}
+
 export default mongoose.model('Employee', EmployeeSchema);
