@@ -35,7 +35,7 @@ const EmployeeSchema = new mongoose.Schema({
 });
 
 // While saving an instance of a model, encrypt password if different than what's saved
-userSchema.pre('save', async function(next){
+EmployeeSchema.pre('save', async function(next){
   if(!this.isModified("password")) {
     next();
   }
@@ -46,7 +46,7 @@ userSchema.pre('save', async function(next){
 })
 
 // Called by AuthController during Sign In
-userSchema.methods.matchPasswords = async function(password) {
+EmployeeSchema.methods.matchPasswords = async function(password) {
   return await bcrypt.compare(password, this.password);
 }
 
