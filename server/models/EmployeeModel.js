@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+const bcrypt = require('bcryptjs');
 
 const EmployeeSchema = new mongoose.Schema({
     firstName: {
