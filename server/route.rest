@@ -2,7 +2,11 @@ get http://localhost:3000/api/
 
 ###
 
-get http://localhost:3000/api/employee/2
+get http://localhost:3000/api/employee
+
+###
+
+get http://localhost:3000/api/employee/1235
 
 ###
 post http://localhost:3000/api/scheduletemplate/
@@ -11,3 +15,38 @@ Content-Type: application/json
 {
   "firstName": "josh"
 }
+
+###
+
+post http://localhost:3000/api/employee
+Content-Type: application/json
+
+{
+      "firstName": "Random",
+      "lastName": "Drone",
+      "id": 1237,
+      "email": "rand2@jmail.com",
+      "password": "pass",
+      "roles": ["opener"],
+      "permissions": "manager"
+  }
+
+###
+//bad data
+post http://localhost:3000/api/employee
+Content-Type: application/json
+
+{
+      "firstName": "josh",
+      "lastName": "hinman",
+      "id": 1234,
+      "password": "pass",
+      "roles": ["opener"],
+      "permissions": "manager"
+  }
+
+###
+delete http://localhost:3000/api/employee/1235
+###
+//bad id delete
+delete http://localhost:3000/api/employee/999

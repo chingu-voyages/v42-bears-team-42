@@ -1,4 +1,5 @@
-const Employee = require('./EmployeeController');
+//const Employee = require('./EmployeeController');
+import Employee from './EmployeeController.js';
 
 // Should we do matchPasswords here, the employee controller or the employee model. Probably the model so it's just a
 // matter of passing back the req.password to where the bcrypt already is.
@@ -47,4 +48,4 @@ const resetPassword = (req, res, next) => {
   res.send(`auth.resetPassword`);
 }
 
-module.exports = { signUp, signIn, forgotPassword, resetPassword };
+export default { signUp, signIn, forgotPassword, resetPassword };
