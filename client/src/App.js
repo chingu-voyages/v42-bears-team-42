@@ -1,14 +1,16 @@
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
 
 function App() {
   return (
-    <div className="h-full">
-      <LandingPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signin" element={<LandingPage />} />
+        <Route path="/signup" element={<LandingPage />} />
+        <Route path="/forgotpassword" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
