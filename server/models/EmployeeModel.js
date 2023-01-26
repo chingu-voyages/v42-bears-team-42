@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
+import bcrypt from 'bcrypt';
 
 const EmployeeSchema = new mongoose.Schema({
     firstName: {
@@ -18,10 +19,6 @@ const EmployeeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -30,12 +27,16 @@ const EmployeeSchema = new mongoose.Schema({
     roles: {
         type: [ String ], //TODO: change to ObjectId or reference
         required: false
+    },
+    permissions: {
+        type: String,
+        enum: ['manager', 'employee'],
+        required: false
     }
-    
 });
 
 // While saving an instance of a model, encrypt password if different than what's saved
-userSchema.pre('save', async function(next){
+EmployeeSchema.pre('save', async function(next){
   if(!this.isModified("password")) {
     next();
   }
@@ -46,7 +47,7 @@ userSchema.pre('save', async function(next){
 })
 
 // Called by AuthController during Sign In
-userSchema.methods.matchPasswords = async function(password) {
+EmployeeSchema.methods.matchPasswords = async function(password) {
   return await bcrypt.compare(password, this.password);
 }
 
