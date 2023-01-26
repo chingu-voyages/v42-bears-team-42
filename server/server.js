@@ -7,7 +7,7 @@ import EmployeeRouter from './routes/EmployeeRouter.js';
 import RoleRouter from './routes/RoleRouter.js';
 import TimeOffRequestRouter from './routes/TimeOffRequestRouter.js';
 import ScheduleTemplateRouter from './routes/ScheduleTemplateRouter.js';
-import AuthRouter from './routes/AuthRouter';
+import AuthRouter from './routes/AuthRouter.js';
 
 dotenv.config();
 const app = express();
