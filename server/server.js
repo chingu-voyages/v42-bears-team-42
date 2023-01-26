@@ -20,13 +20,19 @@ db.once('open', () => console.log("Connected to database"));
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('./'));
+//to serve react app
+app.use(express.static(path.resolve(path.dirname(''), '../client/build')));
+
 
 const sendApiDoc = (req, res) => {
   res.sendFile('apiDoc.html', { root: path.dirname('')});
 }
 
-app.get('/', sendApiDoc);
+const sendAppIndex = (req, res) => {
+  res.sendFile('index.html');
+}
+
+app.get('/', sendAppIndex);
 app.get('/api/', sendApiDoc);
 
 app.use('/api/Employee', EmployeeRouter);

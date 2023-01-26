@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "build": "",
+    "build": "cd ../client && npm run build",
     "devStart": "nodemon server.js"
   },
   "keywords": [],
