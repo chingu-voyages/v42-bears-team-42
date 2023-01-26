@@ -43,7 +43,19 @@ const getOneEmployee = async (req, res) => {
 }
 
 const updateEmployee = async (req, res) => {
-  res.status(200).send('Employee updated');
+  console.log(req.body);
+  //this object requires all properties to be assigned - instead, it could be assigned only necessary values with '...req.body' 
+  let changes = {
+    ...req.body
+  }
+
+  try {
+    const result = await Employee.updateOne({id: req.params.id}, changes);
+    console.log(result);
+    res.status(200).json({message: "edit succeeded"});
+  } catch (err) {
+      res.status(400).json({message: err.message});
+  }
 }
 
 const deleteEmployee = async (req, res) => {
