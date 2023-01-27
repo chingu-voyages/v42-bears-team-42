@@ -29,8 +29,8 @@ const sendApiDoc = (req, res) => {
 }
 
 const sendAppIndex = (req, res) => {
-  res.sendFile('index.html');
-  //res.sendFile('apiDoc.html', { root: path.dirname('')});
+  //res.sendFile('index.html');
+  res.sendFile('apiDoc.html', { root: path.dirname('')});
 }
 
 app.get('/', sendAppIndex);
