@@ -42,7 +42,7 @@ export default function SignIn() {
           <div className="flex flex-row-1">
             <div className="text-left w-1/2">
               <a
-                href="/"
+                href="/forgot"
                 className="text-xs font-semibold text-purple-700 px-1"
               >
                 Forgot Password?
@@ -53,7 +53,7 @@ export default function SignIn() {
                 No account?
               </span>
               <a
-                href="/"
+                href="/signup"
                 className="text-xs font-semibold text-purple-700 px-1"
               >
                 Sign Up
