@@ -58,7 +58,7 @@ export default function SignUp() {
               </label>
               <input
                 type="password"
-                placeholder="Confirm password"
+                placeholder="Re-enter password"
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>

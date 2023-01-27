@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path="/signin" element={<LandingPage />} />
         <Route path="/signup" element={<LandingPage />} />
-        <Route path="/forgotpassword" element={<LandingPage />} />
+        <Route path="/forgot" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   );

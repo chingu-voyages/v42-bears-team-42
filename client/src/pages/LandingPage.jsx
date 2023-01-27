@@ -9,7 +9,7 @@ function LandingPage() {
 
   if (window.location.pathname.match("/signup")) {
     rightPanel = <SignUp />;
-  } else if (window.location.pathname.match("/forgotpassword")) {
+  } else if (window.location.pathname.match("/forgot")) {
     rightPanel = <ForgotPassword />;
   }
 
