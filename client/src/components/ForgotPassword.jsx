@@ -1,14 +1,17 @@
 import React from "react";
 
-export default function SignIn() {
+export default function ForgotPassword() {
   return (
     <div className="h-full w-1/4 min-w-[260px]">
       <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
         <div className="w-full">
-          <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
+          <h1 className="text-3xl font-semibold text-center">
+            Trouble signing in?
+          </h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              Sign In to put SAM to work!
+              Enter your email and we'll send you a link to get back into your
+              account.
             </div>
           </div>
           <form action="" className="mt-4">
@@ -22,30 +25,20 @@ export default function SignIn() {
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="" className="mb-2 block text-xs font-semibold">
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Password"
-                className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-              />
-            </div>
 
             <div className="mb-3">
               <button className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
-                Sign In
+                Reset Password
               </button>
             </div>
           </form>
           <div className="flex flex-row-1">
             <div className="text-left w-1/2">
               <a
-                href="/forgot"
+                href="/signin"
                 className="text-xs font-semibold text-purple-700 px-1"
               >
-                Forgot Password?
+                Sign In
               </a>
             </div>
             <div className="text-right w-1/2">
@@ -58,17 +51,6 @@ export default function SignIn() {
               >
                 Sign Up
               </a>
-            </div>
-          </div>
-          <div id="demos" className="py-10">
-            <h6 className="text-center py-1">Demo Users:</h6>
-            <div id="demoBtns" className="flex flex-row-1 justify-between">
-              <button className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
-                Manager
-              </button>
-              <button className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
-                Employee
-              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,47 @@
+get http://localhost:3000/api/role
+
+###
+get http://localhost:3000/api/role/Opener
+
+###
+post http://localhost:3000/api/role
+Content-Type: application/json
+
+{
+  "name": "Opener",
+  "hours": 8
+  }
+
+###
+post http://localhost:3000/api/role
+Content-Type: application/json
+
+{
+  "name": "Closer",
+  "hours": 8
+  }
+
+###
+//bad data
+post http://localhost:3000/api/role
+Content-Type: application/json
+
+{
+      "name" : null
+  }
+
+###
+delete http://localhost:3000/api/role/Opener
+
+###
+//bad name delete
+delete http://localhost:3000/api/role/999
+
+###
+
+put http://localhost:3000/api/role/Closer
+Content-Type: application/json
+
+{
+  "hours": 6
+}
