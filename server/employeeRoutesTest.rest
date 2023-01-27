@@ -9,14 +9,6 @@ get http://localhost:3000/api/employee
 get http://localhost:3000/api/employee/1235
 
 ###
-post http://localhost:3000/api/scheduletemplate/
-Content-Type: application/json
-
-{
-  "firstName": "josh"
-}
-
-###
 
 post http://localhost:3000/api/employee
 Content-Type: application/json
@@ -50,3 +42,17 @@ delete http://localhost:3000/api/employee/1235
 ###
 //bad id delete
 delete http://localhost:3000/api/employee/999
+
+###
+
+put http://localhost:3000/api/employee/1237
+Content-Type: application/json
+
+{
+      "firstName": "Josh",
+      "lastName": "Hinman",
+      "id": 1237,
+      "password": "pass",
+      "roles": ["opener", "closer", "janitor", "CTO"],
+      "permissions": "manager"
+  }
