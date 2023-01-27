@@ -35,7 +35,7 @@ export default function ForgotPassword() {
           <div className="flex flex-row-1">
             <div className="text-left w-1/2">
               <a
-                href="/"
+                href="/signin"
                 className="text-xs font-semibold text-purple-700 px-1"
               >
                 Sign In
@@ -46,7 +46,7 @@ export default function ForgotPassword() {
                 No account?
               </span>
               <a
-                href="/"
+                href="/signup"
                 className="text-xs font-semibold text-purple-700 px-1"
               >
                 Sign Up
