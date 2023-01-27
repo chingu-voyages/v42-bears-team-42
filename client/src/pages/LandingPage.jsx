@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import Banner from "../components/Banner";
 import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
+import ForgotPassword from "../components/ForgotPassword";
 
 function LandingPage() {
+  let rightPanel = useState(<SignIn />);
+
+  if (window.location.pathname.match("/signup")) {
+    rightPanel = <SignUp />;
+  } else if (window.location.pathname.match("/forgot")) {
+    rightPanel = <ForgotPassword />;
+  }
+
   return (
     <div className="flex flex-wrap h-screen w-screen justify-center bg-white">
-      {/* Landing Page Banner */}
-      <div className=" w-0 sm:w-1/4 md:w-1/2 xl:w-3/4 h-full text-right rounded-r-md">
-        <img className="h-full w-full"
-          src="https://images.unsplash.com/photo-1558025137-0b406e9cc169?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
-          alt="Calendar"
-        />
-      </div>
-      <div className="h-full w-1/4 min-w-[260px]">
-        <SignIn />
-      </div>
+      {/* Banner Panel*/}
+      <Banner />
+      {/* Sign In / Sign Up / Forgot Password Panel */}
+      {rightPanel}
     </div>
   );
 }
