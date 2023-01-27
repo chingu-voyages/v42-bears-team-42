@@ -9,7 +9,7 @@ router
   .get(controller.getAllRoles);
 
 router
-  .route('/:id')
+  .route('/:name')
   .get(controller.getOneRole)
   .put(controller.updateRole)
   .delete(controller.deleteRole);

@@ -9,14 +9,6 @@ get http://localhost:3000/api/employee
 get http://localhost:3000/api/employee/1235
 
 ###
-post http://localhost:3000/api/scheduletemplate/
-Content-Type: application/json
-
-{
-  "firstName": "josh"
-}
-
-###
 
 post http://localhost:3000/api/employee
 Content-Type: application/json

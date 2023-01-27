@@ -44,7 +44,6 @@ const getOneEmployee = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
   console.log(req.body);
-  //this object requires all properties to be assigned - instead, it could be assigned only necessary values with '...req.body' 
   let changes = {
     ...req.body
   }
