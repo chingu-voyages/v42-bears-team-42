@@ -52,6 +52,16 @@ export default function SignUp() {
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>
+            <div className="mb-3">
+              <label htmlFor="" className="mb-2 block text-xs font-semibold">
+                Confirm password
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm password"
+                className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+              />
+            </div>
 
             <div className="mb-3">
               <button className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
