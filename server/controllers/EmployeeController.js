@@ -5,10 +5,8 @@ const createEmployee = async (req, res) => {
   let employee = new Employee({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      id: req.body.id,
       email: req.body.email,
       password: req.body.password,
-      roles: req.body.roles,
       permissions: req.body.permissions
   })
   try {
@@ -31,7 +29,7 @@ const getAllEmployees = async (req, res) => {
 const getOneEmployee = async (req, res) => {
   let employee;
     try {
-        employee = await Employee.findOne({id: req.params.id});
+        employee = await Employee.findOne({_id: req.params._id});
         if (employee == null) {
             return res.status(404).json({message: "cannot find"});
         }
@@ -49,7 +47,7 @@ const updateEmployee = async (req, res) => {
   }
 
   try {
-    const result = await Employee.updateOne({id: req.params.id}, changes);
+    const result = await Employee.updateOne({_id: req.params._id}, changes);
     console.log(result);
     res.status(200).json({message: "edit succeeded"});
   } catch (err) {
@@ -58,9 +56,9 @@ const updateEmployee = async (req, res) => {
 }
 
 const deleteEmployee = async (req, res) => {
-  const id = req.params.id;
+  const _id = req.params._id;
   try {
-    const doc = await Employee.findOneAndDelete({id: id });
+    const doc = await Employee.findOneAndDelete({_id: _id });
     res.status(200).json(doc);
   } catch (err) {
     return res.status(404).json({message: err.message});
