@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-//const bcrypt = require('bcryptjs');
 import bcrypt from 'bcrypt';
 
 const EmployeeSchema = new mongoose.Schema({
@@ -11,10 +10,6 @@ const EmployeeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    id: {
-        type: String,
-        required: true
-    },
     password: {
         type: String,
         required: true
@@ -23,10 +18,6 @@ const EmployeeSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    },
-    roles: {
-        type: [ String ], //TODO: change to ObjectId or reference
-        required: false
     },
     permissions: {
         type: String,

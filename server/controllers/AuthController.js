@@ -1,21 +1,27 @@
-//const Employee = require('./EmployeeController');
-import Employee from './EmployeeController.js';
-
-// Should we do matchPasswords here, the employee controller or the employee model. Probably the model so it's just a
-// matter of passing back the req.password to where the bcrypt already is.
+import Employee from '../models/EmployeeModel.js';
+import EmployeeController from './EmployeeController.js';
 
 const signUp = async (req, res, next) => {
-  console.log('auth controller signup');
-  // create Manager employee, send whole req to controller after adding access: manager to the req 
-  // send email address verification email, which auto-logs them in once verified from clicking link/button in email
+  console.log('AuthController signup');
 
-  // try {
-  //   const { firstName, lastName, email, password } = req.body;
-  //   const employee = await Employee.create({ firstName, lastName, email, password });
-  //   res.status(201).json({ success: true, employee });
-  // } catch (error) {
-  //   res.status(500).json({ success: false, error: error.message });
-  // }
+  req.body.permissions = 'manager';
+  EmployeeController.createEmployee(req, res);
+  
+  /*
+  *** Below may be needed in order to implement email address verification
+  *** Unless we can pass a callback to EmployeeController.createEmployee to handle the email
+  const { firstName, lastName, email, password } = req.body;
+  const employee = await Employee.create({ 
+    firstName,
+    lastName,
+    email,
+    password,
+    permissions: 'manager'
+  });
+
+  // Send email address verification
+  // Email should auto-signin user once verified from clicking link/button
+  */
 }
 
 const signIn = async (req, res, next) => {
@@ -26,9 +32,9 @@ const signIn = async (req, res, next) => {
   }
 
   try {
-    const Employee = await Employee.getOneEmployee({ email }).select("+password");
+    const employee = await EmployeeController.getOneEmployee({ email }).select("+password");
 
-    if(!Employee) res.status(404).json({ success: false, error: "Invalid credentials" });
+    if(!employee) res.status(404).json({ success: false, error: "Invalid credentials" });
 
     const isMatch = await Employee.matchPasswords(password);
 

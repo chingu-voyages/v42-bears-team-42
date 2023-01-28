@@ -5,10 +5,8 @@ const createEmployee = async (req, res) => {
   let employee = new Employee({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      id: req.body.id,
       email: req.body.email,
       password: req.body.password,
-      roles: req.body.roles,
       permissions: req.body.permissions
   })
   try {
