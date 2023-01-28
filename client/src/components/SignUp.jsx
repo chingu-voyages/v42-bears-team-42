@@ -70,7 +70,7 @@ export default function SignUp() {
             </div>
           </form>
           <div className="flex flex-row-1 justify-center">
-            <a href="/" className="text-xs text-gray-400 font-semibold">
+            <a href="/signin" className="text-xs text-gray-400 font-semibold">
               Already have an account?
               <span className="text-xs font-semibold text-purple-700 px-1">
                 Sign In
