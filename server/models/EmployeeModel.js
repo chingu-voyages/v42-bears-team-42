@@ -46,7 +46,7 @@ EmployeeSchema.methods.matchPasswords = async function(password) {
 
 // Called by AuthController during Sign In
 EmployeeSchema.methods.generateAuthToken = function() {
-  return jwt.sign({_id: this._id}, process.env.JWTPRIVATEKEY, {expiresin: '7d'});
+  return jwt.sign({_id: this._id}, process.env.JWTPRIVATEKEY, {expiresIn: '7d'});
 }
 
 // Called by AuthController during Forgot Password

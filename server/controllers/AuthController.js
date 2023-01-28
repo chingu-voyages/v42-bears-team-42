@@ -11,25 +11,22 @@ const signUp = async (req, res, next) => {
   // EmployeeController.createEmployee(req, res);
   
   const { firstName, lastName, email, password } = req.body;
-  const dupEmail = await EmployeeController.getOneEmployee({ email });
+  const dupEmail = await Employee.findOne({ email });
   if(dupEmail) {
-    res.status(400).json({ 
+    return res.status(400).json({ 
       success: false,
       error: "Email address already in use or waiting for account verification"
     });
   }
-
-  try {
-    const employee = await Employee.create({ 
-      firstName,
-      lastName,
-      email,
-      password,
-      permissions: 'manager'
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
+  
+  const employee = await Employee.create({ 
+    firstName,
+    lastName,
+    email,
+    password,
+    permissions: 'manager'
+  });
+  if(!employee) res.status(500).json({ success: false, error: error.message });
   
 
   // Send email address verification
@@ -48,7 +45,7 @@ const signIn = async (req, res, next) => {
   }
 
   try {
-    const employee = await EmployeeController.getOneEmployee({ email }).select("+password");
+    const employee = await Employee.findOne({ email }).select("+password");
     if(!employee) res.status(404).json({ success: false, error: "Invalid credentials" });
 
     const isMatch = await employee.matchPasswords(password);

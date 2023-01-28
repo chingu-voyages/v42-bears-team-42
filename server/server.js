@@ -40,7 +40,7 @@ app.use('/api/Employee', EmployeeRouter);
 app.use("/api/Role", RoleRouter);
 app.use("/api/TimeOffRequest", TimeOffRequestRouter);
 app.use("/api/ScheduleTemplate", ScheduleTemplateRouter);
-app.use("/api/auth", AuthRouter);
+app.use("/api/Auth", AuthRouter);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
