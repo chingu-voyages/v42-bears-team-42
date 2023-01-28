@@ -1,6 +1,7 @@
 import React from "react";
+import LinkButton from "./LinkButton";
 
-export default function SignUp() {
+export default function SignUp({ setContent }) {
   return (
     <div className="h-full w-1/4 min-w-[260px]">
       <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
@@ -70,12 +71,8 @@ export default function SignUp() {
             </div>
           </form>
           <div className="flex flex-row-1 justify-center">
-            <a href="/signin" className="text-xs text-gray-400 font-semibold">
-              Already have an account?
-              <span className="text-xs font-semibold text-purple-700 px-1">
-                Sign In
-              </span>
-            </a>
+            <span className="text-xs font-semibold text-gray-700">Already have an account?</span>
+            <LinkButton setContent={ setContent } linkText='Sign In' linkGo='signin' />
           </div>
         </div>
       </div>

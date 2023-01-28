@@ -1,6 +1,7 @@
 import React from "react";
+import LinkButton from "./LinkButton";
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ setContent }) {
   return (
     <div className="h-full w-1/4 min-w-[260px]">
       <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
@@ -32,25 +33,13 @@ export default function ForgotPassword() {
               </button>
             </div>
           </form>
-          <div className="flex flex-row-1">
-            <div className="text-left w-1/2">
-              <a
-                href="/signin"
-                className="text-xs font-semibold text-purple-700 px-1"
-              >
-                Sign In
-              </a>
+          <div className="flex flex-row-1 justify-between">
+            <div className="text-left">
+              <LinkButton setContent={ setContent } linkText='Sign In' linkGo='signin' />
             </div>
-            <div className="text-right w-1/2">
-              <span className="text-xs text-gray-400 font-semibold">
-                No account?
-              </span>
-              <a
-                href="/signup"
-                className="text-xs font-semibold text-purple-700 px-1"
-              >
-                Sign Up
-              </a>
+            <div className="flex flex-row-1">
+              <span className="text-xs font-semibold text-gray-700">No account?</span>
+              <LinkButton setContent={ setContent } linkText='Sign Up' linkGo='signup' />
             </div>
           </div>
         </div>
