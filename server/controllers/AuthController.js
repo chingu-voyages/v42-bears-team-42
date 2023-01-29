@@ -1,16 +1,24 @@
 import Employee from '../models/EmployeeModel.js';
 import EmployeeController from './EmployeeController.js';
 
+// TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
-  console.log('AuthController signup');
+  console.log('AuthController signUp');
 
-  req.body.permissions = 'manager';
-  EmployeeController.createEmployee(req, res);
+  // If we don't do email address verification or send a token back, we can shorten this to the next 2 lines
+  // and the dupEmail check
+  // req.body.permissions = 'manager';
+  // EmployeeController.createEmployee(req, res);
   
-  /*
-  *** Below may be needed in order to implement email address verification
-  *** Unless we can pass a callback to EmployeeController.createEmployee to handle the email
   const { firstName, lastName, email, password } = req.body;
+  const dupEmail = await Employee.findOne({ email });
+  if(dupEmail) {
+    return res.status(400).json({ 
+      success: false,
+      error: "Email address already in use or waiting for account verification"
+    });
+  }
+  
   const employee = await Employee.create({ 
     firstName,
     lastName,
@@ -18,10 +26,15 @@ const signUp = async (req, res, next) => {
     password,
     permissions: 'manager'
   });
+  if(!employee) res.status(500).json({ success: false, error: error.message });
+  
 
   // Send email address verification
   // Email should auto-signin user once verified from clicking link/button
-  */
+
+  // Do I need to send a token here? The plan is to send signUp form submitters back to '/'
+  
+  res.status(201).json({ success: true, employee });
 }
 
 const signIn = async (req, res, next) => {
@@ -32,15 +45,14 @@ const signIn = async (req, res, next) => {
   }
 
   try {
-    const employee = await EmployeeController.getOneEmployee({ email }).select("+password");
-
+    const employee = await Employee.findOne({ email }).select("+password");
     if(!employee) res.status(404).json({ success: false, error: "Invalid credentials" });
 
-    const isMatch = await Employee.matchPasswords(password);
-
+    const isMatch = await employee.matchPasswords(password);
     if(!isMatch) res.status(404).json({ success: false, error: "Invalid credentials" });
 
-    // res.status(200).json({ success: true, token: "wefwfwe" });
+    const token = employee.generateAuthToken();
+    res.status(200).json({ success: true, token });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

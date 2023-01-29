@@ -10,23 +10,25 @@ const createEmployee = async (req, res) => {
       permissions: req.body.permissions
   })
   try {
-      const result = await employee.save(); 
-      res.status(200).json(JSON.stringify(result));
+      const result = await employee.save();
+      res.status(200).json({ success: true, employee });
   } catch (err) {
-      res.status(400).json({message: err.message});
+      res.status(400).json({ success: false, message: err.message });
   }
 };
 
 const getAllEmployees = async (req, res) => {
   try {
       const employeeArray = await Employee.find().lean();
-      res.status(200).json(employeeArray);
+      res.status(200).json({ success: true, employeeArray });
   } catch (err) {
-      res.status(500).json({ message: err.message})
+      res.status(500).json({ success: false, message: err.message});
   }
 }
 
 const getOneEmployee = async (req, res) => {
+  console.log("EmployeeController getOneEmployee");
+  console.log('req.params: ', req.params)
   let employee;
     try {
         employee = await Employee.findOne({_id: req.params._id});
@@ -49,9 +51,9 @@ const updateEmployee = async (req, res) => {
   try {
     const result = await Employee.updateOne({_id: req.params._id}, changes);
     console.log(result);
-    res.status(200).json({message: "edit succeeded"});
+    res.status(200).json({ success: true, message: "edit succeeded" });
   } catch (err) {
-      res.status(400).json({message: err.message});
+    res.status(400).json({ success: false, message: err.message });
   }
 }
 
