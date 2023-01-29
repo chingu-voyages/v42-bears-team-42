@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
-//const bcrypt = require('bcryptjs');
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 
 const EmployeeSchema = new mongoose.Schema({
     firstName: {
@@ -8,10 +9,6 @@ const EmployeeSchema = new mongoose.Schema({
         required: true
     },
     lastName: {
-        type: String,
-        required: true
-    },
-    id: {
         type: String,
         required: true
     },
@@ -23,10 +20,6 @@ const EmployeeSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    },
-    roles: {
-        type: [ String ], //TODO: change to ObjectId or reference
-        required: false
     },
     permissions: {
         type: String,
@@ -49,6 +42,21 @@ EmployeeSchema.pre('save', async function(next){
 // Called by AuthController during Sign In
 EmployeeSchema.methods.matchPasswords = async function(password) {
   return await bcrypt.compare(password, this.password);
+}
+
+// Called by AuthController during Sign In
+EmployeeSchema.methods.generateAuthToken = function() {
+  return jwt.sign({_id: this._id}, process.env.JWTPRIVATEKEY, {expiresIn: '7d'});
+}
+
+// Called by AuthController during Forgot Password
+EmployeeSchema.methods.generateResetPasswordToken = function() {
+  const resetToken = crypto.randomBytes(20).toString('hex');
+
+  this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+  this.resetPasswordExpire = Date.now() + 10 * (60 * 1000); // First number is minutes
+
+  return resetToken;
 }
 
 export default mongoose.model('Employee', EmployeeSchema);

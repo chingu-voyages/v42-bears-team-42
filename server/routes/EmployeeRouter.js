@@ -1,18 +1,19 @@
 import express from 'express';
-import controller from '../controllers/EmployeeController.js';
-//const bcrypt = require('bcrypt')
+import { getAllEmployees, createEmployee, getOneEmployee, updateEmployee, deleteEmployee } from '../controllers/EmployeeController.js';
+import { protect } from '../middleware/routeProtecter.js';
+
 const router = express.Router();
 
 router
     .route('/')
-    .get(controller.getAllEmployees)
-    .post(controller.createEmployee);
+    .get(getAllEmployees)
+    .post(protect, createEmployee);
 
 router
-    .route('/:id')
-    .get(controller.getOneEmployee)
-    .put(controller.updateEmployee)
-    .delete(controller.deleteEmployee);
+    .route('/:_id')
+    .get(getOneEmployee)
+    .put(updateEmployee)
+    .delete(deleteEmployee);
 
 export default router;
 
