@@ -1,49 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Header() {
+  const [click, setClick] = useState(false);
+  const handleClick = () => {
+    setClick(!click);
+  };
+  const closeDropdown = () => {
+    setClick(false);
+  };
+
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-purple-400 p-4">
-      <div className="flex items-center flex-no-shrink text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight">SAM</span>
-      </div>
-      <div className="block lg:hidden">
-        <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
-          <svg
-            class="h-3 w-3"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+    <nav className="flex items-center justify-between flex-wrap bg-purple-700 p-3">
+      <div className="w-full block grow lg:flex lg:items-center lg:w-auto">
+        {/* Profile */}
+        <div className="flex-grow">
+          <button
+            onClick={() => {
+              handleClick();
+            }}
+            className="text-white bg-none border hover:bg-purple-400 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
           >
-            <title>Menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-          </svg>
-        </button>
-      </div>
-      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div class="text-sm lg:flex-grow">
-          <span>Welcome, </span>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
+            Welcome, User{" "}
+            <svg
+              className="w-4 h-4 ml-2"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div
+            className={
+              click
+                ? "fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                : "hidden fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+            }
           >
-            name
-          </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
-          >
-            Change email
-          </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4"
-          >
-            Change password
-          </a>
+            <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+              <div>Aya Shiau</div>
+              <div className="font-medium truncate">test@email.com</div>
+            </div>
+            <ul
+              className="py-2 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownInformationButton"
+            >
+              <li>
+                <a
+                  href="/"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => {
+                    closeDropdown();
+                  }}
+                >
+                  Change email
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/"
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => {
+                    closeDropdown();
+                  }}
+                >
+                  Change password
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div>
+
+        {/* App Name and Logo */}
+        <div className="flex-grow flex-no-shrink text-white mr-6">
+          <span className="font-semibold text-xl tracking-tight">SAM</span>
+        </div>
+
+        {/* Sign Out Button */}
+        <div className="flex-grow right-auto">
           <a
             href="#sign-out"
-            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0"
+            className="float-right inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0"
           >
             Sign out
           </a>
