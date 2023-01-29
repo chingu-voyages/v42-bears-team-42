@@ -1,17 +1,19 @@
 import express from 'express';
-import controller from '../controllers/EmployeeController.js';
+import { getAllEmployees, createEmployee, getOneEmployee, updateEmployee, deleteEmployee } from '../controllers/EmployeeController.js';
+import { protect } from '../middleware/routeProtecter.js';
+
 const router = express.Router();
 
 router
     .route('/')
-    .get(controller.getAllEmployees)
-    .post(controller.createEmployee);
+    .get(getAllEmployees)
+    .post(protect, createEmployee);
 
 router
     .route('/:_id')
-    .get(controller.getOneEmployee)
-    .put(controller.updateEmployee)
-    .delete(controller.deleteEmployee);
+    .get(getOneEmployee)
+    .put(updateEmployee)
+    .delete(deleteEmployee);
 
 export default router;
 

@@ -1,11 +1,10 @@
-//const express = require('express');
 import express from 'express'
 const router = express.Router();
-import controller from '../controllers/AuthController.js';
+import { signUp, signIn, forgotPassword, resetPassword } from '../controllers/AuthController.js';
 
-router.route('/signup').post(controller.signUp);
-router.route('/signin').post(controller.signIn);
-router.route('/forgotpassword').post(controller.forgotPassword);
-router.route('/resetpassword/:resetToken').put(controller.resetPassword);
+router.route('/signup').post(signUp);
+router.route('/signin').post(signIn);
+router.route('/forgotpassword').post(forgotPassword);
+router.route('/resetpassword/:resetToken').put(resetPassword);
 
 export default router;
