@@ -3,13 +3,6 @@ import EmployeeController from './EmployeeController.js';
 
 // TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
-  console.log('AuthController signUp');
-
-  // If we don't do email address verification or send a token back, we can shorten this to the next 2 lines
-  // and the dupEmail check
-  // req.body.permissions = 'manager';
-  // EmployeeController.createEmployee(req, res);
-  
   const { firstName, lastName, email, password } = req.body;
   const dupEmail = await Employee.findOne({ email });
   if(dupEmail) {
@@ -26,13 +19,9 @@ const signUp = async (req, res, next) => {
     password,
     permissions: 'manager'
   });
-  if(!employee) res.status(500).json({ success: false, error: error.message });
+  if(!employee) return res.status(500).json({ success: false, error: error.message });
   
-
-  // Send email address verification
-  // Email should auto-signin user once verified from clicking link/button
-
-  // Do I need to send a token here? The plan is to send signUp form submitters back to '/'
+  // Email address verification: clicking link/button in email should auto-sign in user
   
   res.status(201).json({ success: true, employee });
 }
@@ -58,11 +47,11 @@ const signIn = async (req, res, next) => {
   }
 }
 
-const forgotPassword = (req, res, next) => {
+const forgotPassword = async (req, res, next) => {
   res.send(`auth.forgotPassword`);
 }
 
-const resetPassword = (req, res, next) => {
+const resetPassword = async (req, res, next) => {
   res.send(`auth.resetPassword`);
 }
 
