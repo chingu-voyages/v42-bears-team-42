@@ -31,15 +31,15 @@ const signIn = async (req, res, next) => {
   const { email, password } = req.body;
 
   if(!email || !password) {
-    res.status(400).json({ success: false, error: "Please provide valid email and password" });
+    return res.status(400).json({ success: false, error: "Please provide valid email and password" });
   }
 
   try {
     const employee = await Employee.findOne({ email }).select("+password");
-    if(!employee) res.status(404).json({ success: false, error: "Invalid credentials" });
+    if(!employee) return res.status(404).json({ success: false, error: "Invalid credentials" });
 
     const isMatch = await employee.matchPasswords(password);
-    if(!isMatch) res.status(404).json({ success: false, error: "Invalid credentials" });
+    if(!isMatch) return res.status(404).json({ success: false, error: "Invalid credentials" });
 
     const token = employee.generateAuthToken();
     res.status(200).json({ success: true, token });
@@ -111,4 +111,4 @@ const resetPassword = async (req, res, next) => {
   }
 }
 
-export default { signUp, signIn, forgotPassword, resetPassword };
+export { signUp, signIn, forgotPassword, resetPassword };

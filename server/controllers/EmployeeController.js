@@ -67,7 +67,7 @@ const deleteEmployee = async (req, res) => {
   }
 }
 
-export default {
+export {
   createEmployee,
   getAllEmployees,
   getOneEmployee,
