@@ -4,14 +4,12 @@ import crypto from 'crypto';
 
 // TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
-  // console.log('req: ', req)
-
   const { firstName, lastName, email, password } = req.body;
   const dupEmail = await Employee.findOne({ email });
   if(dupEmail) {
     return res.status(400).json({ 
       success: false,
-      error: "Email address already in use. Have you confirmed your email?"
+      error: "Email address already in use."
     });
   }
   

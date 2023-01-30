@@ -13,7 +13,6 @@ export default function SignUp({ setContent }) {
     setTimeout(() => {
       setError('');
     }, 5000);
-    console.log('message:', message);
     return setError(message);
   }
   
@@ -35,11 +34,18 @@ export default function SignUp({ setContent }) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({firstName, lastName, email, password})
     })
+      .then(data => data.json())
       .then(data => {
-        console.log('Status:', data.status, `Employee ${firstName} ${lastName} created`);
-        window.location.reload(false);
+        if(data.success) {
+          console.log('Status:', data.status, `Employee ${firstName} ${lastName} created`);
+          window.location.reload(false);
+        } else {
+          throw new Error(data.error);
+        }
       })
-      .catch(error => displayError(error.response.data.error));
+      .catch((error) => {
+        displayError(error.message);
+      });
   }
 
   return (
