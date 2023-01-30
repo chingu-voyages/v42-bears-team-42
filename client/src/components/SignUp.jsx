@@ -6,13 +6,28 @@ export default function SignUp({ setContent }) {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = ('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
+  const displayError = (message) => {
+    setTimeout(() => {
+      setError('');
+    }, 5000);
+    console.log('message:', message);
+    return setError(message);
+  }
+  
   const signUpHandler = async (e) => {
     e.preventDefault();
 
-    if(!firstName || !lastName || !email || !password ) {
-      return;
+    if( !firstName || !lastName || !email || !password || !confirmPassword ) {
+      return displayError('All fields required!');
+    }
+
+    if(password !== confirmPassword) {
+      setPassword('');
+      setConfirmPassword('');
+      return displayError('Passwords do not match!');
     }
 
     return await fetch('http://localhost:3000/api/auth/signup', {
@@ -22,11 +37,9 @@ export default function SignUp({ setContent }) {
     })
       .then(data => {
         console.log('Status:', data.status, `Employee ${firstName} ${lastName} created`);
-        
-        // Redirect to '/' on success, stay on SignUp otherwise
+        window.location.reload(false);
       })
-      .catch(error => console.log('error: ', error));
-      // Catch and display api returned errors
+      .catch(error => displayError(error.response.data.error));
   }
 
   return (
@@ -36,7 +49,7 @@ export default function SignUp({ setContent }) {
           <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              Sign up to get started!
+              {error && <span className="text-red-900">{error}</span>} {!error && <span>Sign up to get started!</span>}
             </div>
           </div>
           <form action="" className="mt-4">
@@ -80,6 +93,7 @@ export default function SignUp({ setContent }) {
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
                 onChange={e => setPassword(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
@@ -91,6 +105,8 @@ export default function SignUp({ setContent }) {
               <input
                 type="password"
                 placeholder="Re-enter password"
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>
