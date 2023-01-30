@@ -21,7 +21,8 @@ export default function SignUp({ setContent }) {
       body: JSON.stringify({firstName, lastName, email, password})
     })
       .then(data => {
-        console.log('raw data.status', data.status);
+        console.log('Status:', data.status, `Employee ${firstName} ${lastName} created`);
+        
         // Redirect to '/' on success, stay on SignUp otherwise
       })
       .catch(error => console.log('error: ', error));
