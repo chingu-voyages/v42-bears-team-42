@@ -9,7 +9,7 @@ const signUp = async (req, res, next) => {
   if(dupEmail) {
     return res.status(400).json({ 
       success: false,
-      error: "Email address already in use or waiting for account verification"
+      error: "Email address already in use."
     });
   }
   
