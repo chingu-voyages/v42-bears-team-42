@@ -55,7 +55,7 @@ export default function SignUp({ setContent }) {
           <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              {error && <span className="text-red-900">{error}</span>} {!error && <span>Sign up to get started!</span>}
+              {error && <span className="text-red-900">{error}</span>} {!error && <span>Sign up to get started!</span>} 
             </div>
           </div>
           <form action="" className="mt-4">
