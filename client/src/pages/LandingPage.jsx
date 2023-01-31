@@ -5,11 +5,11 @@ import SignUp from "../components/SignUp";
 import ForgotPassword from "../components/ForgotPassword";
 
 function Content() {
-  const [content, setContent] = useState('signin');
+  const [content, setContent] = useState("signin");
 
-  if(content === 'signin') return <SignIn setContent={setContent} />;
-  if(content === 'signup') return <SignUp setContent={setContent} />;
-  if(content === 'forgot') return <ForgotPassword setContent={setContent} />;
+  if (content === "signin") return <SignIn setContent={setContent} />;
+  if (content === "signup") return <SignUp setContent={setContent} />;
+  if (content === "forgot") return <ForgotPassword setContent={setContent} />;
 }
 
 function LandingPage() {
