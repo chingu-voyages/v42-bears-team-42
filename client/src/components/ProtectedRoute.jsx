@@ -4,9 +4,10 @@ function ProtectedRoute({ component: Component, ...rest }) {
   return ( 
     <Route 
       {...rest}
-      render=
+
     />
   );
 }
 
+//      render=
 export default ProtectedRoute;
