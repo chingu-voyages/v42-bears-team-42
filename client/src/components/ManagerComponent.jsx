@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ManagementComponent({ setPermissions }) {
+export default function ManagerComponent({ setPermissions }) {
   return <div>Management Component</div>;
 }

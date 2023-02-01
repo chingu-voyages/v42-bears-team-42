@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import ManagementComponent from "../components/ManagementComponent";
+import ManagerComponent from "../components/ManagementComponent";
 import EmployeeComponent from "../components/EmployeeComponent";
 
 export default function DashboardPage() {
@@ -9,7 +9,7 @@ export default function DashboardPage() {
 
 
     if (permissions === "manager")
-      return <ManagementComponent setPermissions={setPermissions} />;
+      return <ManagerComponent setPermissions={setPermissions} />;
     if (permissions === "employee")
       return <EmployeeComponent setPermissions={setPermissions} />;
   }
