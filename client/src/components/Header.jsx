@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../logo-no-background.png";
 
 export default function Header() {
   const [click, setClick] = useState(false);
@@ -10,7 +11,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-purple-700 p-3">
+    <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-3">
       <div className="w-full block grow lg:flex lg:items-center lg:w-auto">
         {/* Profile */}
         <div className="flex-grow">
@@ -18,7 +19,7 @@ export default function Header() {
             onClick={() => {
               handleClick();
             }}
-            className="text-white bg-none border hover:bg-purple-400 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
+            className="text-white bg-none border hover:bg-purple-700 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
           >
             Welcome, User{" "}
             <svg
@@ -55,7 +56,7 @@ export default function Header() {
               <li>
                 <a
                   href="/"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
                   onClick={() => {
                     closeDropdown();
                   }}
@@ -66,7 +67,7 @@ export default function Header() {
               <li>
                 <a
                   href="/"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
                   onClick={() => {
                     closeDropdown();
                   }}
@@ -80,14 +81,18 @@ export default function Header() {
 
         {/* App Name and Logo */}
         <div className="flex-grow flex-no-shrink text-white mr-6">
-          <span className="font-semibold text-xl tracking-tight">SAM</span>
+          <img
+            className="mx-auto h-16"
+            src={logo}
+            alt="app name and logo"
+          ></img>
         </div>
 
         {/* Sign Out Button */}
         <div className="flex-grow right-auto">
           <a
             href="#sign-out"
-            className="float-right inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 lg:mt-0"
+            className="float-right inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-purple-700 mt-4 lg:mt-0"
           >
             Sign out
           </a>
