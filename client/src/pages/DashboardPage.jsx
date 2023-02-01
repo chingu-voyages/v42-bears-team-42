@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header";
-import ManagerComponent from "../components/ManagementComponent";
+import ManagerComponent from "../components/ManagerComponent";
 import EmployeeComponent from "../components/EmployeeComponent";
 
 export default function DashboardPage() {
   function DashboardComponent() {
-    const [permissions, setPermissions] = useState(localStorage.getItem('permissions'));
+    const access = localStorage.getItem('permissions');
 
-
-    if (permissions === "manager")
-      return <ManagerComponent setPermissions={setPermissions} />;
-    if (permissions === "employee")
-      return <EmployeeComponent setPermissions={setPermissions} />;
+    if (access === "manager") return <ManagerComponent />;
+    if (access === "employee") return <EmployeeComponent />;
   }
 
   return (
