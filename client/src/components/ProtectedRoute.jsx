@@ -1,13 +1,16 @@
-import { Route, useNavigate } from 'react-router-dom';
+import { Route, redirect } from 'react-router-dom';
 
 function ProtectedRoute({ component: Component, ...rest }) {
   return ( 
     <Route 
       {...rest}
-
+      render={(props) => {
+        localStorage.getItem('authToken') ? 
+        (<Component {...props} />) : 
+        (< redirect to="/" />)
+      }}
     />
   );
 }
 
-//      render=
 export default ProtectedRoute;

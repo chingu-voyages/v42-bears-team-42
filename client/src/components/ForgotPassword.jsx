@@ -3,17 +3,17 @@ import LinkButton from "./LinkButton";
 
 export default function ForgotPassword({ setContent }) {
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
-  const displayError = (message) => {
-    setTimeout(() => {
-      setError('');
-    }, 5000);
-    return setError(message);
-  }
+  // const displayError = (message) => {
+  //   setTimeout(() => {
+  //     setError('');
+  //   }, 5000);
+  //   return setError(message);
+  // }
 
   const forgotPasswordHandler = () => {
-    
+    if(!email) return;
   }
 
   return (
@@ -43,7 +43,7 @@ export default function ForgotPassword({ setContent }) {
             </div>
 
             <div className="mb-3">
-              <button className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
+              <button onClick={ forgotPasswordHandler } className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
                 Reset Password
               </button>
             </div>
