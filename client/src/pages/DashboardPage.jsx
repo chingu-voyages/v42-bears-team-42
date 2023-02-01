@@ -5,7 +5,8 @@ import EmployeeComponent from "../components/EmployeeComponent";
 
 export default function DashboardPage() {
   function DashboardComponent() {
-    const [permissions, setPermissions] = useState("manager");
+    const [permissions, setPermissions] = useState(localStorage.getItem('permissions'));
+
 
     if (permissions === "manager")
       return <ManagementComponent setPermissions={setPermissions} />;
