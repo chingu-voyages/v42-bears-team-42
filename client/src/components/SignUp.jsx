@@ -29,7 +29,7 @@ export default function SignUp({ setContent }) {
       return displayError('Passwords do not match!');
     }
 
-    return await fetch('http://localhost:3000/api/auth/signup', {
+    return await fetch('https://samapp-production.up.railway.app/api/auth/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({firstName, lastName, email, password})
