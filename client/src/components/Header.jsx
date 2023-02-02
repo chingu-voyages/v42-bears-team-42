@@ -45,12 +45,12 @@ export default function Header() {
                 : "hidden fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
             }
           >
-            <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div className="px-4 py-3 text-sm text-gray-900">
               <div>Aya Shiau</div>
               <div className="font-medium truncate">test@email.com</div>
             </div>
             <ul
-              className="py-2 text-sm text-gray-700 dark:text-gray-200"
+              className="py-2 text-sm text-gray-700"
               aria-labelledby="dropdownInformationButton"
             >
               <li>
