@@ -1,21 +1,17 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import LandingPage from "./pages/LandingPage";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
-  // const protect = (component) => access ? <DashboardPage /> : <LandingPage />;
-  const protect = async (component) => {
-    const access = await sessionStorage.getItem('authToken');
-    return access ? <DashboardPage /> : <Navigate to='/' />;
-  }
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard" element={ protect(<DashboardPage />) } />
+        <Route element={ <ProtectedRoutes /> } >
+          <Route path="/dashboard" element={ <DashboardPage /> } />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
