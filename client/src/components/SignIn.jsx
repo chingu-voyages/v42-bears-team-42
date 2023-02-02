@@ -29,8 +29,8 @@ export default function SignIn({ setContent }) {
       .then(data => data.json())
       .then(data => {
         if(data.success) {
-          localStorage.setItem('authToken', data.token);
-          localStorage.setItem('permissions', data.permissions);
+          sessionStorage.setItem('authToken', data.token);
+          sessionStorage.setItem('permissions', data.permissions);
           navigate("/dashboard");
         } else {
           console.log('success false', data.error)
