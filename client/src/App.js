@@ -5,8 +5,11 @@ import LandingPage from "./pages/LandingPage";
 // import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const access = sessionStorage.getItem('authToken');
-  const protect = (component) => access ? <DashboardPage /> : <Navigate to='/' />;
+  // const protect = (component) => access ? <DashboardPage /> : <LandingPage />;
+  const protect = async (component) => {
+    const access = await sessionStorage.getItem('authToken');
+    return access ? <DashboardPage /> : <Navigate to='/' />;
+  }
 
   return (
     <BrowserRouter>
