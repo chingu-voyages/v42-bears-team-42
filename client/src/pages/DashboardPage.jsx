@@ -4,8 +4,8 @@ import ManagerComponent from "../components/ManagerComponent";
 import EmployeeComponent from "../components/EmployeeComponent";
 
 export default function DashboardPage() {
+  const employee = JSON.parse(sessionStorage.getItem("employee"));
   function DashboardComponent() {
-    const employee = JSON.parse(sessionStorage.getItem("employee"));
     const access = employee.permissions;
 
     if (access === "manager") return <ManagerComponent />;
@@ -14,7 +14,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header />
+      <Header employee={employee} />
       <DashboardComponent />
     </>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "../logo-no-background.png";
 import HeaderModal from "./modals/HeaderModal";
 
-export default function Header() {
+export default function Header({ employee }) {
   const [click, setClick] = useState(false);
   const [showChangeEmail, setChangeEmail] = useState(false);
   const [showChangePassword, setChangePassword] = useState(false);
@@ -18,7 +18,7 @@ export default function Header() {
             }}
             className="text-white bg-none border hover:bg-purple-700 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
           >
-            Welcome, User{" "}
+            Welcome, {employee.firstName}
             <svg
               className="w-4 h-4 ml-2"
               aria-hidden="true"
@@ -43,8 +43,10 @@ export default function Header() {
             }
           >
             <div className="px-4 py-3 text-sm text-gray-900">
-              <div>Aya Shiau</div>
-              <div className="font-medium truncate">test@email.com</div>
+              <div>
+                {employee.firstName} {employee.lastName}
+              </div>
+              <div className="font-medium truncate">{employee.email}</div>
             </div>
             <ul
               className="py-2 text-sm text-gray-700"
