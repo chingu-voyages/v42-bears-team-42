@@ -16,7 +16,7 @@ export default function ForgotPassword({ setContent }) {
     e.preventDefault();
 
     if(!email) return displayError('No email address entered');
-
+    //https://samapp-production.up.railway.app/
     return await fetch('https://samapp-production.up.railway.app/api/auth/forgotpassword', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -64,7 +64,7 @@ export default function ForgotPassword({ setContent }) {
 
             <div className="mb-3">
               <button onClick={ forgotPasswordHandler } className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
-                Reset Password
+                Send Email
               </button>
             </div>
           </form>
