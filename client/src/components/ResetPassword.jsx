@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Banner from './Banner';
 import logo from '../logo-black.png'
 
-function ResetPassword(resetToken) {
+function ResetPassword({ match }) {
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState();
-
   const navigate = useNavigate();
+  const { resetToken } = useParams();
 
   const displayError = (message) => {
     setTimeout(() => {
@@ -18,11 +18,13 @@ function ResetPassword(resetToken) {
 
   const resetPasswordHandler = async (e) => {
     e.preventDefault();
-    console.log('resetToken', resetToken)
     if( !newPassword ) return displayError('Please enter a new password');
+    
+    console.log('resetToken', resetToken)
+    //https://samapp-production.up.railway.app/api/auth/resetpassword
 
-    return await fetch(`https://samapp-production.up.railway.app/api/auth/resetpassword/${resetToken}`, {
-      method: 'POST',
+    return await fetch(`http://localhost:3000/api/auth/resetpassword/${resetToken}`, {
+      method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({newPassword})
     })

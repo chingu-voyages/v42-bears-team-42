@@ -10,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/resetpassword/:resetToken" element={ <ResetPassword /> } />
         <Route element={ <ProtectedRoutes /> } >
           <Route path="/dashboard" element={ <DashboardPage /> } />
-          <Route path="/resetpassword/:resetToken" element={ <ResetPassword resetToken='resetToken' /> }></Route>
         </Route>
       </Routes>
     </BrowserRouter>
