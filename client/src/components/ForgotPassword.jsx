@@ -3,30 +3,50 @@ import LinkButton from "./LinkButton";
 
 export default function ForgotPassword({ setContent }) {
   const [email, setEmail] = useState('');
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
 
-  // const displayError = (message) => {
-  //   setTimeout(() => {
-  //     setError('');
-  //   }, 5000);
-  //   return setError(message);
-  // }
+  const displayError = (message) => {
+    setTimeout(() => {
+      setError('');
+    }, 5000);
+    return setError(message);
+  }
 
-  const forgotPasswordHandler = () => {
-    if(!email) return;
+  const forgotPasswordHandler = async (e) => {
+    e.preventDefault();
+
+    if(!email) return displayError('No email address entered');
+
+    return await fetch('https://samapp-production.up.railway.app/api/auth/forgotpassword', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email})
+    })
+      .then(data => data.json())
+      .then(data => {
+        if(data.success) {
+          console.log('Status:', data.status, data.message);
+          window.location.reload(false);
+        } else {
+          throw new Error(data.message);
+        }
+      })
+      .catch((error) => {
+        displayError(error.message);
+      });
   }
 
   return (
-    <div className="h-full w-1/4 min-w-[260px]">
-      <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
+    <div className="h-full w-full min-w-[260px]">
+      <div className="flex flex-wrap w-full h-full content-center justify-center bg-white px-2">
         <div className="w-full">
           <h1 className="text-3xl font-semibold text-center">
             Trouble signing in?
           </h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              Enter your email and we'll send you a link to get back into your
-              account.
+              {error && <span className="text-red-900">{error}</span>}
+              {!error && <span>We'll send you a password reset link.</span>}
             </div>
           </div>
           <form action="" className="mt-4">
