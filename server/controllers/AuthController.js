@@ -54,7 +54,7 @@ const signIn = async (req, res, next) => {
     const token = employee.generateAuthToken();
     res
       .status(200)
-      .json({ success: true, permissions: employee.permissions, token });
+      .json({ success: true, employee, token });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
