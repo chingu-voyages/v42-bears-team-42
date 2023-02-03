@@ -5,10 +5,8 @@ import EmployeeComponent from "../components/EmployeeComponent";
 
 export default function DashboardPage() {
   function DashboardComponent() {
-    const access = sessionStorage.getItem("employee.permissions");
-    let employee = sessionStorage.getItem("employee")
-    let perms = sessionStorage.getItem("employee.permissions")
-    console.log('employee', employee, 'employee perms', perms)
+    const employee = JSON.parse(sessionStorage.getItem("employee"));
+    const access = employee.permissions;
 
     if (access === "manager") return <ManagerComponent />;
     if (access === "employee") return <EmployeeComponent />;
