@@ -126,7 +126,7 @@ const resetPassword = async (req, res, next) => {
         .status(400)
         .json({ success: false, error: "Invalid Reset Token" });
 
-    employee.password = req.body.password;
+    employee.password = req.body.newPassword;
     employee.resetPasswordToken = undefined;
     employee.resetPasswordExpire = undefined;
 
