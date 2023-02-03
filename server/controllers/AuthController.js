@@ -93,6 +93,7 @@ const forgotPassword = async (req, res, next) => {
       res
         .status(200)
         .json({ success: true, data: "Password Reset email sent" });
+
     } catch (error) {
       employee.resetPasswordToken = undefined;
       employee.resetPasswordExpire = undefined;
