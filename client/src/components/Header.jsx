@@ -38,8 +38,8 @@ export default function Header({ employee }) {
           <div
             className={
               click
-                ? "fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
-                : "hidden fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                ? "fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow"
+                : "hidden fixed z-10 bg-white divide-y divide-gray-100 rounded-lg shadow"
             }
           >
             <div className="px-4 py-3 text-sm text-gray-900">
