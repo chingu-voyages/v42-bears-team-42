@@ -19,7 +19,7 @@ function ResetPassword() {
 
     if( !newPassword ) return displayError('Please enter a new passwords');
 
-    return await fetch('http://localhost:3000/api/auth/signin', {
+    return await fetch('https://samapp-production.up.railway.app/api/auth/signin', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({newPassword})
