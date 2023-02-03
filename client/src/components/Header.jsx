@@ -110,7 +110,7 @@ export default function Header() {
           <form className="space-y-6" action="#">
             <div>
               <label
-                for="new-email"
+                htmlFor="new-email"
                 className="block mb-2 text-sm font-medium text-gray-900"
               >
                 Enter New Email
@@ -149,7 +149,7 @@ export default function Header() {
           <form className="space-y-6" action="#">
             <div>
               <label
-                for="new-password"
+                htmlFor="new-password"
                 className="block mb-2 text-sm font-medium text-gray-900"
               >
                 Enter New Password
@@ -164,7 +164,7 @@ export default function Header() {
             </div>
             <div>
               <label
-                for="confirm-new-password"
+                htmlFor="confirm-new-password"
                 className="block mb-2 text-sm font-medium text-gray-900"
               >
                 Confirm New Password
