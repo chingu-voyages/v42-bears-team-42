@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Banner from './Banner';
 import logo from '../logo-black.png'
 
-function ResetPassword({ match }) {
+function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function ResetPassword({ match }) {
     if( !newPassword ) return displayError('Please enter a new passwords');
 
     //https://samapp-production.up.railway.app
-    return await fetch('https://samapp-production.up.railway.app/api/auth/resetpassword/${resetToken}', {
+    return await fetch(`https://samapp-production.up.railway.app/api/auth/resetpassword/${resetToken}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({newPassword})
