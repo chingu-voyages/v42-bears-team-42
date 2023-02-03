@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import logo from "../logo-no-background.png";
+import HeaderModal from "./modals/HeaderModal";
 
 export default function Header() {
   const [click, setClick] = useState(false);
-  const handleClick = () => {
-    setClick(!click);
-  };
-  const closeDropdown = () => {
-    setClick(false);
-  };
+  const [showChangeEmail, setChangeEmail] = useState(false);
+  const [showChangePassword, setChangePassword] = useState(false);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-3">
@@ -17,7 +14,7 @@ export default function Header() {
         <div className="flex-grow">
           <button
             onClick={() => {
-              handleClick();
+              setClick(!click);
             }}
             className="text-white bg-none border hover:bg-purple-700 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
           >
@@ -53,27 +50,27 @@ export default function Header() {
               className="py-2 text-sm text-gray-700"
               aria-labelledby="dropdownInformationButton"
             >
-              <li>
-                <a
-                  href="/"
-                  className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                  onClick={() => {
-                    closeDropdown();
-                  }}
-                >
+              <li
+                className="hover:bg-purple-700 hover:text-white cursor-pointer"
+                onClick={() => {
+                  setChangeEmail(true);
+                  setClick(!click);
+                }}
+              >
+                <button className="block px-4 py-2  hover:text-white">
                   Change email
-                </a>
+                </button>
               </li>
-              <li>
-                <a
-                  href="/"
-                  className="block px-4 py-2 hover:bg-purple-700 hover:text-white"
-                  onClick={() => {
-                    closeDropdown();
-                  }}
-                >
+              <li
+                className="hover:bg-purple-700 hover:text-white cursor-pointer"
+                onClick={() => {
+                  setChangePassword(true);
+                  setClick(!click);
+                }}
+              >
+                <button className="block px-4 py-2 hover:text-white">
                   Change password
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -98,6 +95,97 @@ export default function Header() {
           </a>
         </div>
       </div>
+      {/* Change Email Modal */}
+      <HeaderModal
+        isVisible={showChangeEmail}
+        onClose={() => {
+          setChangeEmail(false);
+        }}
+      >
+        <div className="py-6 px-6 lg:px-8 text-left">
+          <h3 className="mb-4 text-xl font-medium text-gray-900">
+            Change Email
+          </h3>
+
+          <form className="space-y-6" action="#">
+            <div>
+              <label
+                htmlFor="new-email"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Enter New Email
+              </label>
+              <input
+                type="email"
+                name="new-email"
+                id="new-email"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-800 focus:border-purple-800 block w-full p-2.5"
+                placeholder="name@company.com"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </HeaderModal>
+      {/* Change Password Modal */}
+      <HeaderModal
+        isVisible={showChangePassword}
+        onClose={() => {
+          setChangePassword(false);
+        }}
+      >
+        <div className="py-6 px-6 lg:px-8 text-left">
+          <h3 className="mb-4 text-xl font-medium text-gray-900">
+            Change Password
+          </h3>
+
+          <form className="space-y-6" action="#">
+            <div>
+              <label
+                htmlFor="new-password"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Enter New Password
+              </label>
+              <input
+                type="password"
+                name="new-password"
+                id="new-password"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-800 focus:border-purple-800 block w-full p-2.5"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="confirm-new-password"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Confirm New Password
+              </label>
+              <input
+                type="password"
+                name="confirm-new-password"
+                id="confirm-new-password"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-300 focus:border-purple-800 block w-full p-2.5"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </HeaderModal>
     </nav>
   );
 }
