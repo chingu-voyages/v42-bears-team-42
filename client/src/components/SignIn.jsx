@@ -30,7 +30,7 @@ export default function SignIn({ setContent }) {
       .then(data => {
         if(data.success) {
           sessionStorage.setItem('authToken', data.token);
-          sessionStorage.setItem('permissions', data.permissions);
+          sessionStorage.setItem('employee', JSON.stringify(data.employee));
           navigate("/dashboard");
         } else {
           console.log('success false', data.error)
@@ -43,8 +43,8 @@ export default function SignIn({ setContent }) {
   }
 
   return (
-    <div className="h-full w-1/4 min-w-[260px]">
-      <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
+    <div className="h-full w-full min-w-[260px]">
+      <div className="flex flex-wrap w-full h-full content-center justify-center bg-white px-2">
         <div className="w-full">
           <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
           <div className="w-full content-center">
