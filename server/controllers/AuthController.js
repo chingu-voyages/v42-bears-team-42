@@ -20,8 +20,9 @@ const signUp = async (req, res, next) => {
     password,
     permissions: "manager",
   });
-  if (!employee)
-    return res.status(500).json({ success: false, error: error.message });
+
+  // This needs to be tested. Is there an error to send here?
+  if (!employee) return res.status(500).json({ success: false, error: error.message });
 
   // Email address verification: clicking link/button in email should auto-sign in user
 

@@ -30,7 +30,7 @@ export default function SignIn({ setContent }) {
       .then(data => {
         if(data.success) {
           sessionStorage.setItem('authToken', data.token);
-          sessionStorage.setItem('permissions', data.permissions);
+          sessionStorage.setItem('employee', JSON.stringify(data.employee));
           navigate("/dashboard");
         } else {
           console.log('success false', data.error)
