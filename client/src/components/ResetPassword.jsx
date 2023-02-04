@@ -23,8 +23,7 @@ function ResetPassword({ match }) {
     console.log('resetToken', resetToken)
     if( !newPassword ) return displayError('Please enter a new passwords');
 
-    //https://samapp-production.up.railway.app
-    return await fetch(`https://samapp-production.up.railway.app/api/auth/resetpassword/${resetToken}`, {
+    return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/resetpassword/${resetToken}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({newPassword})
