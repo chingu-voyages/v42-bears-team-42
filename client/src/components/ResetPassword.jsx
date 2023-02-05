@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Banner from './Banner';
 import logo from '../logo-black.png'
 
-function ResetPassword({ match }) {
+function ResetPassword() {
   const [newPassword, setNewPassword] = useState('');
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function ResetPassword({ match }) {
     if( !newPassword ) return displayError('Please enter a new passwords');
 
     return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/resetpassword/${resetToken}`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({newPassword})
     })
