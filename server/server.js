@@ -11,7 +11,7 @@ import AuthRouter from "./routes/AuthRouter.js";
 
 dotenv.config();
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const db = mongoose.connection;

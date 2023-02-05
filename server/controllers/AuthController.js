@@ -2,7 +2,6 @@ import Employee from "../models/EmployeeModel.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 
-// TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   const dupEmail = await Employee.findOne({ email });
@@ -76,7 +75,7 @@ const forgotPassword = async (req, res, next) => {
     await employee.save();
 
     // Create email
-    const resetURL = `https://v42-bears-team-42-production.up.railway.app/resetpassword/${resetToken}`;
+    const resetURL = `${process.env.SAM_FE_URL}/resetpassword/${resetToken}`;
     const message = `
       <h1>Password reset requested</h1>
       <p>A password reset request was submitted, for this email address, to SAM.
