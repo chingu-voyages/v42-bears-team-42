@@ -25,7 +25,9 @@ const EmployeeSchema = new mongoose.Schema({
         type: String,
         enum: ['manager', 'employee'],
         required: false
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date
 });
 
 // While saving an instance of a model, encrypt password if different than what's saved
