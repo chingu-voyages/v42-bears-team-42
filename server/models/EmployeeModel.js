@@ -27,7 +27,8 @@ const EmployeeSchema = new mongoose.Schema({
         required: false
     },
     resetPasswordToken: String,
-    resetPasswordExpire: Date
+    resetPasswordExpire: Date,
+    active: {type: Boolean, default: true}
 });
 
 // While saving an instance of a model, encrypt password if different than what's saved
