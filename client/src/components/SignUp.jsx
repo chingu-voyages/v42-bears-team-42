@@ -52,11 +52,9 @@ export default function SignUp({ setContent }) {
     <div className="h-full w-full min-w-[260px]">
       <div className="flex flex-wrap w-full h-full content-center justify-center bg-white px-2">
         <div className="w-full">
-          <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
-          <div className="w-full content-center">
-            <div className="text-gray-400 text-center">
-              {error && <span className="text-red-900">{error}</span>} {!error && <span>Sign up to get started!</span>} 
-            </div>
+          <div className="text-lg text-center">
+            {error && <span className="text-red-900">{error}</span>}
+            {!error && <span>Sign up to get started!</span>}
           </div>
           <form action="" className="mt-4">
             <div className="mb-3">
