@@ -16,8 +16,8 @@ export default function ForgotPassword({ setContent }) {
     e.preventDefault();
 
     if(!email) return displayError('No email address entered');
-    //https://samapp-production.up.railway.app/
-    return await fetch('https://samapp-production.up.railway.app/api/auth/forgotpassword', {
+
+    return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/forgotpassword`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({email})

@@ -76,7 +76,7 @@ const forgotPassword = async (req, res, next) => {
     await employee.save();
 
     // Create email
-    const resetURL = `https://v42-bears-team-42-production.up.railway.app/resetpassword/${resetToken}`;
+    const resetURL = `${process.env.SAM_FE_URL}/resetpassword/${resetToken}`;
     const message = `
       <h1>Password reset requested</h1>
       <p>A password reset request was submitted, for this email address, to SAM.

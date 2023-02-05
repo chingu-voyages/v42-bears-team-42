@@ -20,8 +20,8 @@ export default function SignIn({ setContent }) {
     e.preventDefault();
 
     if( !email || !password ) return displayError('Please enter email and password');
-    //https://samapp-production.up.railway.app
-    return await fetch('https://samapp-production.up.railway.app/api/auth/signin', {
+
+    return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/signin`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({email, password})
