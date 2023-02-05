@@ -2,7 +2,6 @@ import Employee from "../models/EmployeeModel.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 
-// TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   const dupEmail = await Employee.findOne({ email });
