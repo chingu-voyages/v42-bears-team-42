@@ -3,6 +3,7 @@ import ScheduleTemplate from '../models/ScheduleTemplateModel.js';
 const createScheduleTemplate = (req, res) => {
   res.status(200).send('ScheduleTemplate created');
 }
+
 const getAllScheduleTemplates = (req, res) => {
   res.status(200).send('ScheduleTemplates fetched: [{}{}{}]');
 }

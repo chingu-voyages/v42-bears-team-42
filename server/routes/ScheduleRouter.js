@@ -1,5 +1,5 @@
 import express from 'express';
-import controller from '../controllers/ScheduleTemplateController.js';
+import controller from '../controllers/ScheduleController.js';
 import protect from '../middleware/routeProtecter.js';
 const router = express.Router();
 
