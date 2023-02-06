@@ -7,13 +7,13 @@ router.use(protect);
 
 router
     .route('/')
-    .get(controller.getAllScheduleTemplates)
-    .post(controller.createScheduleTemplate);
+    .get(controller.getAllSchedules)
+    .post(controller.createSchedule);
 
 router
     .route('/:id')
-    .get(controller.getOneScheduleTemplate)
-    .put(controller.updateScheduleTemplate)
-    .delete(controller.deleteScheduleTemplate);
+    .get(controller.getOneSchedule)
+    .put(controller.updateSchedule)
+    .delete(controller.deleteSchedule);
 
 export default router;

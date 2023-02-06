@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 // focus: employee_id days: [{role}]
 // focus: requirements days: [{role, qty}]
 const ScheduleSchema = new mongoose.Schema({
-  dateStart: Date,
+  start: Date,
   focus: String,
   days: []
 });

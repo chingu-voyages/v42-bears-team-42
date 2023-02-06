@@ -2,15 +2,15 @@ import Schedule from '../models/ScheduleModel.js';
 
 const createSchedule = async (req, res) => {
   try {
-    const { dateStart, focus, days } = req.body;
-    const schedule = await Schedule.create({ dateStart, focus, days });
-    res.status(200).send('ScheduleTemplate created');
+    const { start, focus, days } = req.body;
+    const schedule = await Schedule.create({ start, focus, days });
+    res.status(200).send('Schedule created');
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
 }
 
-const getAllSchedule = async (req, res) => {
+const getAllSchedules = async (req, res) => {
   try {
     const scheduleArray = await Schedule.find().lean();
 
@@ -21,20 +21,22 @@ const getAllSchedule = async (req, res) => {
 }
 
 const getOneSchedule = async (req, res) => {
-  res.status(200).send('ScheduleTemplate fetched {}');
+  const schedule = await Schedule.find({ start: req.body.start });
+
+  res.status(200).send('Schedule fetched {}');
 }
 
 const updateSchedule = async (req, res) => {
-  res.status(200).send('ScheduleTemplate updated');
+  res.status(200).send('Schedule updated');
 }
 
 const deleteSchedule = async (req, res) => {
-  res.status(200).send('ScheduleTemplate deleted');
+  res.status(200).send('Schedule deleted');
 }
 
 export default {
   createSchedule,
-  getAllSchedule,
+  getAllSchedules,
   getOneSchedule,
   updateSchedule,
   deleteSchedule
