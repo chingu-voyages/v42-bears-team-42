@@ -3,7 +3,7 @@ import Schedule from '../models/ScheduleModel.js';
 const createSchedule = async (req, res) => {
   try {
     const { start, focus, days } = req.body;
-    const schedule = await Schedule.create({ start, focus, days });
+    const schedule = await Schedule.create({ start: Date.parse(start), focus, days });
     res.status(200).send('Schedule created');
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
@@ -16,18 +16,33 @@ const getAllSchedules = async (req, res) => {
 
     res.status(200).json({ success: true, scheduleArray });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 }
 
 const getOneSchedule = async (req, res) => {
-  const schedule = await Schedule.find({ start: req.body.start });
+  try {
+    // TODO: Enforce regex date formats on front end, i.e. YYYY-MM-DD, MM-DD-YYYY, etc.
+    const startDate = Date.parse(req.params.start);
+    const schedule = await Schedule.find({ start: startDate });
 
-  res.status(200).send('Schedule fetched {}');
+    if(schedule.length === 0) return res.status(404).json({ success: false, error: "No schedules with that date" })
+  
+    res.status(200).json({ success: true, schedule });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
 }
 
 const updateSchedule = async (req, res) => {
-  res.status(200).send('Schedule updated');
+  try {
+    const updates = {...req.body};
+    const result = Schedule.updateOne({_id: req.params._id, updates});
+
+    res.status(200).json({ success: true, message: 'Schedule updated' });
+  } catch (error) {
+    res.status(404).json({ success: false, error: error.message });
+  }
 }
 
 const deleteSchedule = async (req, res) => {

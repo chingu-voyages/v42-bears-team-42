@@ -11,7 +11,7 @@ router
     .post(controller.createSchedule);
 
 router
-    .route('/:id')
+    .route('/:start')
     .get(controller.getOneSchedule)
     .put(controller.updateSchedule)
     .delete(controller.deleteSchedule);
