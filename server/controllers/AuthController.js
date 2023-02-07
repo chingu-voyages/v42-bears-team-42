@@ -22,7 +22,8 @@ const signUp = async (req, res, next) => {
   });
 
   // This needs to be tested. Is there an error to send here?
-  if (!employee) return res.status(500).json({ success: false, error: error.message });
+  if (!employee)
+    return res.status(500).json({ success: false, error: error.message });
 
   // Email address verification: clicking link/button in email should auto-sign in user
 
@@ -53,9 +54,7 @@ const signIn = async (req, res, next) => {
         .json({ success: false, error: "Invalid credentials" });
 
     const token = employee.generateAuthToken();
-    res
-      .status(200)
-      .json({ success: true, employee, token });
+    res.status(200).json({ success: true, employee, token });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -94,7 +93,6 @@ const forgotPassword = async (req, res, next) => {
       res
         .status(200)
         .json({ success: true, data: "Password Reset email sent" });
-
     } catch (error) {
       employee.resetPasswordToken = undefined;
       employee.resetPasswordExpire = undefined;
