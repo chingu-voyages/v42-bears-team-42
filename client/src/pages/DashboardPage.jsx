@@ -2,9 +2,11 @@ import React from "react";
 import Header from "../components/Header";
 import ManagerComponent from "../components/ManagerComponent";
 import EmployeeComponent from "../components/EmployeeComponent";
+import EmployeeService from "../utils/EmployeeService";
 
 export default function DashboardPage() {
-  const employee = JSON.parse(sessionStorage.getItem("employee"));
+  let employee = EmployeeService.getEmployeeFromStorage();
+
   function DashboardComponent() {
     const access = employee.permissions;
 

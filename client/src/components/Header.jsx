@@ -1,11 +1,53 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../logo-no-background.png";
 import HeaderModal from "./modals/HeaderModal";
+import TokenService from "../utils/TokenService";
+import EmployeeService from "../utils/EmployeeService";
 
 export default function Header({ employee }) {
   const [click, setClick] = useState(false);
-  const [showChangeEmail, setChangeEmail] = useState(false);
-  const [showChangePassword, setChangePassword] = useState(false);
+  const [showChangeEmail, setShowChangeEmail] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const displayError = (message) => {
+    setTimeout(() => {
+      setError("");
+    }, 5000);
+    return setError(message);
+  };
+
+  const changeEmailHandler = async (e) => {
+    e.preventDefault();
+
+    const authToken = TokenService.getAuthToken();
+
+    if (!newEmail || !password) return displayError("Both fields required.");
+    const data = await EmployeeService.changeEmail(employee._id, newEmail);
+    if (data.success) {
+      const updatedData = await EmployeeService.getEmployeefromDb(
+        employee._id,
+        authToken
+      );
+      employee = EmployeeService.resetStorageValue(updatedData);
+      setNewEmail("");
+      setPassword("");
+      setShowChangeEmail(false);
+    } else {
+      console.log(data);
+    }
+    return employee;
+  };
+
+  const signOutHandler = async (e) => {
+    TokenService.removeToken("authToken");
+    navigate("/");
+  };
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-3">
@@ -55,7 +97,7 @@ export default function Header({ employee }) {
               <li
                 className="hover:bg-purple-700 hover:text-white cursor-pointer"
                 onClick={() => {
-                  setChangeEmail(true);
+                  setShowChangeEmail(true);
                   setClick(!click);
                 }}
               >
@@ -66,7 +108,7 @@ export default function Header({ employee }) {
               <li
                 className="hover:bg-purple-700 hover:text-white cursor-pointer"
                 onClick={() => {
-                  setChangePassword(true);
+                  setShowChangePassword(true);
                   setClick(!click);
                 }}
               >
@@ -92,6 +134,9 @@ export default function Header({ employee }) {
           <a
             href="#sign-out"
             className="float-right inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-purple-700 mt-4 lg:mt-0"
+            onClick={() => {
+              signOutHandler();
+            }}
           >
             Sign out
           </a>
@@ -101,15 +146,33 @@ export default function Header({ employee }) {
       <HeaderModal
         isVisible={showChangeEmail}
         onClose={() => {
-          setChangeEmail(false);
+          setShowChangeEmail(false);
         }}
       >
         <div className="py-6 px-6 lg:px-8 text-left">
           <h3 className="mb-4 text-xl font-medium text-gray-900">
             Change Email
           </h3>
-
+          {error && <span className="text-red-900 text-sm">{error}</span>}
           <form className="space-y-6" action="#">
+            <div>
+              <label
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Enter Your Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-800 focus:border-purple-800 block w-full p-2.5"
+                placeholder="password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
             <div>
               <label
                 htmlFor="new-email"
@@ -123,6 +186,7 @@ export default function Header({ employee }) {
                 id="new-email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-800 focus:border-purple-800 block w-full p-2.5"
                 placeholder="name@company.com"
+                onChange={(e) => setNewEmail(e.target.value)}
                 required
               />
             </div>
@@ -130,6 +194,7 @@ export default function Header({ employee }) {
             <button
               type="submit"
               className="w-full text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              onClick={changeEmailHandler}
             >
               Submit
             </button>
@@ -140,7 +205,7 @@ export default function Header({ employee }) {
       <HeaderModal
         isVisible={showChangePassword}
         onClose={() => {
-          setChangePassword(false);
+          setShowChangePassword(false);
         }}
       >
         <div className="py-6 px-6 lg:px-8 text-left">
