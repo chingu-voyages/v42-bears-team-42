@@ -4,7 +4,7 @@ import Schedule from './ScheduleModel.js'
 const ScheduleGroupSchema = new mongoose.Schema({
   start: Date,
   schedules: [{
-    type: mongoose.ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: Schedule
   }]
 });

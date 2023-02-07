@@ -22,11 +22,9 @@ const getAllSchedules = async (req, res) => {
 
 const getOneSchedule = async (req, res) => {
   try {
-    // TODO: Enforce regex date formats on front end, i.e. YYYY-MM-DD, MM-DD-YYYY, etc.
-    const startDate = Date.parse(req.params.start);
-    const schedule = await Schedule.find({ start: startDate });
+    const schedule = await Schedule.find({ _id: req.params._id });
 
-    if(schedule.length === 0) return res.status(404).json({ success: false, error: "No schedules with that date" })
+    if(!schedule) return res.status(404).json({ success: false, error: "Invalid Schedule _id" });
   
     res.status(200).json({ success: true, schedule });
   } catch (error) {
@@ -49,12 +47,27 @@ const deleteSchedule = async (req, res) => {
   res.status(200).send('Schedule deleted');
 }
 
+const getScheduleGroup = async (req, res) => {
+  try {
+    // TODO: Enforce regex date formats on front end, i.e. YYYY-MM-DD, MM-DD-YYYY, etc.
+    const startDate = Date.parse(req.params.start);
+    const schedule = await Schedule.find({ start: startDate });
+
+    if(schedule.length === 0) return res.status(404).json({ success: false, error: "No schedules with that date" })
+  
+    res.status(200).json({ success: true, schedule });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
 export default {
   createSchedule,
   getAllSchedules,
   getOneSchedule,
   updateSchedule,
-  deleteSchedule
+  deleteSchedule,
+  getScheduleGroup
 }
 
 

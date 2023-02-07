@@ -11,9 +11,14 @@ router
     .post(controller.createSchedule);
 
 router
-    .route('/:start')
+    .route('/:_id')
     .get(controller.getOneSchedule)
     .put(controller.updateSchedule)
     .delete(controller.deleteSchedule);
+
+router
+    .route('/:start')
+    .get(controller.getScheduleGroup);
+
 
 export default router;
