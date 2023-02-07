@@ -35,7 +35,7 @@ const getOneSchedule = async (req, res) => {
 const updateSchedule = async (req, res) => {
   try {
     const updates = {...req.body};
-    const result = Schedule.updateOne({_id: req.params._id, updates});
+    const result = await Schedule.updateOne({_id: req.params._id, updates});
 
     res.status(200).json({ success: true, message: 'Schedule updated' });
   } catch (error) {
@@ -44,7 +44,12 @@ const updateSchedule = async (req, res) => {
 }
 
 const deleteSchedule = async (req, res) => {
-  res.status(200).send('Schedule deleted');
+  try {
+    const result = await Schedule.deleteOne({_id: req.params._id});
+    res.status(200).send('Schedule deleted');
+  } catch (error) {
+    res.status(404).json({ success: false, error: error.message });
+  }
 }
 
 const getScheduleGroup = async (req, res) => {
