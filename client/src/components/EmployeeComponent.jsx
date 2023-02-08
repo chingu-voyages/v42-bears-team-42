@@ -1,6 +1,9 @@
 function EmployeeComponent() {
   return (
-    <h1>EmployeeComponent</h1>
+    <div className="flex w-full h-full">
+      <div className="schedule"></div>
+      <div className="timeOff"></div>
+    </div>
   );
 }
 

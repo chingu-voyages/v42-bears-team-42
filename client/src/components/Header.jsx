@@ -54,7 +54,7 @@ export default function Header({ employee }) {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-3">
+    <nav className="h-full w-full flex items-center justify-between flex-wrap bg-slate-900 p-3">
       <div className="w-full block grow lg:flex lg:items-center lg:w-auto">
         {/* Profile */}
         <div className="flex-grow">

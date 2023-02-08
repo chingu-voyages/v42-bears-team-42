@@ -15,9 +15,13 @@ export default function DashboardPage() {
   }
 
   return (
-    <>
-      <Header employee={employee} />
-      <DashboardComponent />
-    </>
+    <div className="h-screen w-screen">
+      <div className="h-1/6">
+        <Header employee={employee} />
+      </div>
+      <div className="h-5/6">
+        <DashboardComponent />
+      </div>
+    </div>
   );
 }
