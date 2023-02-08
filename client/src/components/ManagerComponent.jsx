@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import Scheduler from "./Scheduler/Scheduler";
+import EmployeeManageComponent from "./EmployeeManageComponent";
 
 export default function ManagerComponent() {
   const [activeTab, setActiveTab] = useState('scheduler');
+
+  const setNewActive = (e) => {
+    // e.target
+  }
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -11,9 +16,11 @@ export default function ManagerComponent() {
         <div onClick={() => setActiveTab('employee')} className="tabRight w-1/2 py-2 text-center rounded-lg border-2 border-purple-700">Employee Management</div>
       </div>
       <div className="tabContent">
-        { activeTab === 'scheduler' ? <Scheduler /> : <Scheduler /> }
+        { activeTab === 'scheduler' ? <Scheduler /> : <EmployeeManageComponent /> }
 
       </div>
     </div>
   );
 }
+
+// <div className="bg-gray-400"><Scheduler /></div>
