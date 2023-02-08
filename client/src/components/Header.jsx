@@ -12,6 +12,7 @@ export default function Header({ employee }) {
   const [newEmail, setNewEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [user, setUser] = useState({...employee});
 
   const navigate = useNavigate();
 
@@ -34,7 +35,10 @@ export default function Header({ employee }) {
         employee._id,
         authToken
       );
-      employee = EmployeeService.resetStorageValue(updatedData);
+      EmployeeService.resetStorageValue(updatedData);
+      
+      setUser({...user, email: newEmail});
+
       setNewEmail("");
       setPassword("");
       setShowChangeEmail(false);
@@ -60,7 +64,7 @@ export default function Header({ employee }) {
             }}
             className="text-white bg-none border hover:bg-purple-700 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center"
           >
-            Welcome, {employee.firstName}
+            Welcome, {user.firstName}
             <svg
               className="w-4 h-4 ml-2"
               aria-hidden="true"
@@ -86,9 +90,9 @@ export default function Header({ employee }) {
           >
             <div className="px-4 py-3 text-sm text-gray-900">
               <div>
-                {employee.firstName} {employee.lastName}
+                {user.firstName} {user.lastName}
               </div>
-              <div className="font-medium truncate">{employee.email}</div>
+              <div className="font-medium truncate">{user.email}</div>
             </div>
             <ul
               className="py-2 text-sm text-gray-700"
