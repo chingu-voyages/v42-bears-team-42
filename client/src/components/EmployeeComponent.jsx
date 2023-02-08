@@ -1,5 +1,7 @@
-import React from "react";
-
-export default function EmployeeComponent() {
-  return <div>EmployeeComponent</div>;
+function EmployeeComponent() {
+  return (
+    <h1>EmployeeComponent</h1>
+  );
 }
+
+export default EmployeeComponent;
