@@ -14,7 +14,9 @@ export default function ManagerComponent() {
         <div onClick={(e) => setActiveTab('scheduler')} className={`${tabStyle} ${activeScheduler}`}>
           Scheduler
         </div>
-        <div onClick={(e) => setActiveTab('employee')} className={`${tabStyle} ${activeEmployee}`}>Employee Management</div>
+        <div onClick={(e) => setActiveTab('employee')} className={`${tabStyle} ${activeEmployee}`}>
+          Employee Management
+        </div>
       </div>
       <div className="tabContent">
         { activeTab === 'scheduler' ? <Scheduler /> : <EmployeeManageComponent /> }
