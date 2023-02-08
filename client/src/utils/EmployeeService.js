@@ -5,10 +5,11 @@ const EmployeeService = {
   getEmployeefromDb,
   changeEmail,
   resetStorageValue,
+  changePassword,
   // signIn,
 };
 
-const BASE_URL = "http://localhost:3001/api/Employee";
+const BASE_URL = `${process.env.REACT_APP_BE_URL}/api/Employee`;
 
 function getEmployeeFromStorage() {
   const employee = sessionStorage.getItem("employee");
@@ -32,7 +33,7 @@ function getEmployeefromDb(id, authToken) {
 
 function changeEmail(id, newEmail) {
   const authToken = TokenService.getAuthToken();
-  return fetch(`${BASE_URL}/${id}/`, {
+  return fetch(`${BASE_URL}/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -41,12 +42,27 @@ function changeEmail(id, newEmail) {
     body: JSON.stringify({ email: newEmail }),
   }).then((response) => {
     if (response.ok) return response.json();
-    console.log(response, "error in utils");
+    console.log(response, "error in changeEmail utils");
   });
 }
 
 function resetStorageValue(employee) {
   return sessionStorage.setItem("employee", JSON.stringify(employee));
+}
+
+function changePassword(id, newPassword) {
+  const authToken = TokenService.getAuthToken();
+  return fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ password: newPassword }),
+  }).then((response) => {
+    if (response.ok) return response.json();
+    console.log(response, "error in changePassword utils");
+  });
 }
 
 // async function signIn(email, password) {
