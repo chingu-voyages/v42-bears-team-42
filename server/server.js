@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import EmployeeRouter from "./routes/EmployeeRouter.js";
 import RoleRouter from "./routes/RoleRouter.js";
 import TimeOffRequestRouter from "./routes/TimeOffRequestRouter.js";
+import ScheduleRouter from "./routes/ScheduleRouter.js";
 import ScheduleTemplateRouter from "./routes/ScheduleTemplateRouter.js";
 import AuthRouter from "./routes/AuthRouter.js";
 
@@ -38,6 +39,7 @@ app.get("/api/", sendApiDoc);
 app.use("/api/Employee", EmployeeRouter);
 app.use("/api/Role", RoleRouter);
 app.use("/api/TimeOffRequest", TimeOffRequestRouter);
+app.use("/api/Schedule", ScheduleRouter);
 app.use("/api/ScheduleTemplate", ScheduleTemplateRouter);
 app.use("/api/Auth", AuthRouter);
 

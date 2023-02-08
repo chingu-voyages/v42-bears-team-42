@@ -22,10 +22,10 @@ export default function SignIn({ setContent }) {
     if (!email || !password)
       return displayError("Please enter email and password");
 
-    return await fetch("http://localhost:3001/api/Auth/signin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+    return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/signin`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, password})
     })
       .then((data) => data.json())
       .then((data) => {

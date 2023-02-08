@@ -1,7 +1,9 @@
 import express from 'express';
 import controller from '../controllers/RoleController.js';
-
+import protect from '../middleware/routeProtecter.js';
 const router = express.Router();
+
+router.use(protect);
 
 router
   .route('/')

@@ -20,7 +20,7 @@ function LandingPage() {
       <Banner />
       {/* Sign In / Sign Up / Forgot Password Panel */}
       <div className="flex flex-col w-1/4 content-center min-w-[260px]">
-        <img className="mx-auto h-24 mb-16 mt-8" src={logo} alt="app name and logo" />
+        <img className="mx-auto h-24 mb-6 mt-6" src={logo} alt="app name and logo" />
         <div className="w-full content-center justify-center border-0">
           <Content />
         </div>
