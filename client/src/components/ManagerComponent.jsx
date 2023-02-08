@@ -4,23 +4,21 @@ import EmployeeManageComponent from "./EmployeeManageComponent";
 
 export default function ManagerComponent() {
   const [activeTab, setActiveTab] = useState('scheduler');
-
-  const setNewActive = (e) => {
-    // e.target
-  }
+  const tabStyle = 'w-1/2 py-2 text-center rounded-lg border-2 border-purple-700';
+  const activeScheduler = activeTab === 'scheduler' ? 'bg-white' : '';
+  const activeEmployee = activeTab === 'employee' ? 'bg-white' : '';
 
   return (
     <div className="w-full h-full flex flex-col">
       <div className="tabRow flex flex-row h-2/6 bg-gray-500">
-        <div onClick={() => setActiveTab('scheduler')} className="tabLeft w-1/2 py-2 text-center rounded-lg border-2 border-purple-700 bg-white">Scheduler</div>
-        <div onClick={() => setActiveTab('employee')} className="tabRight w-1/2 py-2 text-center rounded-lg border-2 border-purple-700">Employee Management</div>
+        <div onClick={(e) => setActiveTab('scheduler')} className={`${tabStyle} ${activeScheduler}`}>
+          Scheduler
+        </div>
+        <div onClick={(e) => setActiveTab('employee')} className={`${tabStyle} ${activeEmployee}`}>Employee Management</div>
       </div>
       <div className="tabContent">
         { activeTab === 'scheduler' ? <Scheduler /> : <EmployeeManageComponent /> }
-
       </div>
     </div>
   );
 }
-
-// <div className="bg-gray-400"><Scheduler /></div>
