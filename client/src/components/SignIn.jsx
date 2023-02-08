@@ -1,55 +1,57 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import LinkButton from "./LinkButton";
 
 export default function SignIn({ setContent }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   let navigate = useNavigate();
 
   const displayError = (message) => {
     setTimeout(() => {
-      setError('');
+      setError("");
     }, 5000);
     return setError(message);
-  }
-  
+  };
+
   const signInHandler = async (e) => {
     e.preventDefault();
 
-    if( !email || !password ) return displayError('Please enter email and password');
+    if (!email || !password)
+      return displayError("Please enter email and password");
 
-    return await fetch('https://samapp-production.up.railway.app/api/auth/signin', {
+    return await fetch(`${process.env.REACT_APP_BE_URL}/api/auth/signin`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({email, password})
     })
-      .then(data => data.json())
-      .then(data => {
-        if(data.success) {
-          localStorage.setItem('authToken', data.token);
-          localStorage.setItem('permissions', data.permissions);
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.success) {
+          sessionStorage.setItem("authToken", data.token);
+          sessionStorage.setItem("employee", JSON.stringify(data.employee));
           navigate("/dashboard");
         } else {
-          console.log('success false', data.error)
+          console.log("success false", data.error);
           throw new Error(data.error);
         }
       })
       .catch((error) => {
         displayError(error.message);
       });
-  }
+  };
 
   return (
-    <div className="h-full w-1/4 min-w-[260px]">
-      <div className="flex flex-wrap w-full h-full content-center justify-center rounded-l-md bg-white shadow-md px-2">
+    <div className="h-full w-full min-w-[260px]">
+      <div className="flex flex-wrap w-full h-full content-center justify-center bg-white px-2">
         <div className="w-full">
           <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              {error && <span className="text-red-900">{error}</span>} {!error && <span>Sign In to put SAM to work!</span>}
+              {error && <span className="text-red-900">{error}</span>}{" "}
+              {!error && <span>Sign In to put SAM to work!</span>}
             </div>
           </div>
           <form action="" className="mt-4">
@@ -60,7 +62,7 @@ export default function SignIn({ setContent }) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>
@@ -71,24 +73,37 @@ export default function SignIn({ setContent }) {
               <input
                 type="password"
                 placeholder="Password"
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
             </div>
 
             <div className="mb-3">
-              <button onClick={ signInHandler } className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
+              <button
+                onClick={signInHandler}
+                className="mb-1.5 block w-full text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md"
+              >
                 Sign In
               </button>
             </div>
           </form>
           <div className="flex flex-row-1 justify-between">
             <div className="text-left w-1/2">
-              <LinkButton setContent={ setContent } linkText='Forgot Password?' linkGo='forgot' />
+              <LinkButton
+                setContent={setContent}
+                linkText="Forgot Password?"
+                linkGo="forgot"
+              />
             </div>
             <div className="flex flex-row-1">
-              <span className="text-xs font-semibold text-gray-700">No account?</span>
-              <LinkButton setContent={ setContent } linkText='Sign Up' linkGo='signup' />
+              <span className="text-xs font-semibold text-gray-700">
+                No account?
+              </span>
+              <LinkButton
+                setContent={setContent}
+                linkText="Sign Up"
+                linkGo="signup"
+              />
             </div>
           </div>
           <div id="demos" className="py-10">

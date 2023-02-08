@@ -7,7 +7,8 @@ const createEmployee = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      permissions: req.body.permissions
+      permissions: req.body.permissions,
+      active: true
   })
   try {
       const result = await employee.save();
@@ -43,14 +44,17 @@ const getOneEmployee = async (req, res) => {
 }
 
 const updateEmployee = async (req, res) => {
-  console.log(req.body);
-  let changes = {
-    ...req.body
-  }
-
   try {
-    const result = await Employee.updateOne({_id: req.params._id}, changes);
-    console.log(result);
+    const employee = await Employee.findOne({_id: req.params._id});
+
+    if(req.body.firstName) employee.firstName = req.body.firstName;
+    if(req.body.lastName) employee.lastName = req.body.lastName;
+    if(req.body.email) employee.email = req.body.email;
+    if(req.body.password) employee.password = req.body.password;
+    if(req.body.permissions) employee.permissions = req.body.permissions;
+    if(req.body.active) employee.active = req.body.active;
+
+    await employee.save();
     res.status(200).json({ success: true, message: "edit succeeded" });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });

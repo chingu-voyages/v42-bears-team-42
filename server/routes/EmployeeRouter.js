@@ -1,7 +1,6 @@
 import express from 'express';
 import { getAllEmployees, createEmployee, getOneEmployee, updateEmployee, deleteEmployee } from '../controllers/EmployeeController.js';
-import { protect } from '../middleware/routeProtecter.js';
-
+import protect from '../middleware/routeProtecter.js';
 const router = express.Router();
 
 router.use(protect);
