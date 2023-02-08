@@ -19,6 +19,7 @@ const createEmployee = async (req, res) => {
 };
 
 const getAllEmployees = async (req, res) => {
+  console.log('controller')
   try {
       const employeeArray = await Employee.find().lean();
       res.status(200).json({ success: true, employeeArray });

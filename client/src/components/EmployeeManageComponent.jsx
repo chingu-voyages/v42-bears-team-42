@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect, } from "react";
 import { useParams } from "react-router-dom";
+import EmployeeData from "./EmployeeData";
 
 export default function EmployeeManageComponent() {
     const employee  = JSON.parse( sessionStorage.employee );
@@ -11,23 +12,25 @@ export default function EmployeeManageComponent() {
     
     const employeeId = employee._id;
     
-    const [employees, setEmployee] = useState();
+    const [employees, setEmployees] = useState([]);
     const authToken = sessionStorage.getItem("authToken");
     
-    // useEffect(() => {
-    //     getEmployee();
-    // })
+    useEffect(() => {
+        getEmployees();
+    },[])
 
-    // const getEmployee = async () => {
-    //     const response = await fetch(
-    //     `${process.env.REACT_APP_BE_URL}/api/Employee/${ employeeId }`, 
-    //     {
-    //         method: 'GET',
-    //         headers: {Authorization: `Bearer ${authToken}`}
-    //     })
-    //   const data = await response.json();
-    //   setEmployee(data);
-    // }
+    const getEmployees = async () => {
+        const response = await fetch(
+        `${process.env.REACT_APP_BE_URL}/api/Employee/`, 
+            {
+                method: 'GET',
+                headers: {Authorization: `Bearer ${authToken}`},
+                "Content-Type": "application/json",
+            })
+        const data = await response.json();
+        setEmployees(data);
+        console.log(employees,'here')
+    }
 
     return (
       <div>
@@ -49,32 +52,32 @@ export default function EmployeeManageComponent() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
                                 {/* table body */}
-                                    <tr  className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                                
+                                {employees.map(data => (
+                                    <tr key={data._id} className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                                         {/* First Name */}
                                         <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                             <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">FirstName</span>
-                                            { firstName }
+                                            { data.firstName }
                                         </td>
 
                                         {/* Last Name */}
                                         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                                             <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">LastName</span>
-                                            { lastName } 
+                                            { data.lastName } 
                                         </td>
 
                                         {/* Email */}
               	                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                                             <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">Email</span>
-                                            { email }
+                                            { data.email }
                                         </td>
 
                                         {/* Permission */}
                                         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                                             <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">Permissions</span>
-                                            <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold">{ permissions }</span>
-                                            
+                                            <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold">{ data.permissions }</span>
                                         </td>
 
                                         {/* de-active */}
@@ -83,7 +86,9 @@ export default function EmployeeManageComponent() {
                                             <a to="#" className="text-blue-400 hover:text-blue-600 underline pl-6">Remove</a>
                                         </td>
                                     </tr>
+                                ))}
                                 </tbody>
+                            
                             </table>
                         </div>
                     </div>
