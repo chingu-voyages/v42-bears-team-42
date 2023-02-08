@@ -82,6 +82,25 @@ export default function Header({ employee }) {
       clearNewPasswordInput();
       return displayError("Passwords don't match. Try again.");
     }
+
+    const data = await EmployeeService.changePassword(
+      employee._id,
+      newPassword
+    );
+    if (data.success) {
+      const updatedData = await EmployeeService.getEmployeefromDb(
+        employee._id,
+        authToken
+      );
+      EmployeeService.resetStorageValue(updatedData);
+
+      setNewPassword("");
+      setConfirmNewPassword("");
+      setShowChangePassword(false);
+    } else {
+      console.log(data);
+    }
+    return employee;
   };
 
   return (
