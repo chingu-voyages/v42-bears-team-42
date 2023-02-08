@@ -4,6 +4,7 @@ import DashboardPage from "./pages/DashboardPage";
 import LandingPage from "./pages/LandingPage";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import ResetPassword from "./components/ResetPassword";
+import EmployeeComponent from "./components/EmployeeComponent";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/resetpassword/:resetToken" element={ <ResetPassword /> } />
+        {/* Eric adding */}
+        <Route path="/employeeComponent/:id" element={ <EmployeeComponent /> } />
         <Route element={ <ProtectedRoutes /> } >
           <Route path="/dashboard" element={ <DashboardPage /> } />
         </Route>
