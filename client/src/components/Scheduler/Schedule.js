@@ -2,31 +2,54 @@ import { useState } from 'react';
 import EmployeeWorkWeek from './EmployeeWorkWeek';
 import RoleRequirements from './RoleRequirements';
 
-const employees = ["George Anderson", "Susan Lee", "Hector Hidalgo", "Vittorio Stanza"];
-const tempArray = [1,2,3,4,5,6,7];
+const newWorkWeek = () => ['Opener', 'Closer', 'off', 'off', 'off', 'off', 'off'];
 
-const Schedule = ({ roles }) => {
+const Schedule = ({ employees, roles }) => {
 
   const [activeEmployees, setActiveEmployees] = useState([]);
-  const selectEmployee = (name) => {
-    setActiveEmployees(activeEmployees.concat(name))
+  const [workWeeks, setWorkWeeks] = useState([]);
+
+  const addEmployee = (name) => {
+    setActiveEmployees(activeEmployees.concat(name));
+    console.log(Array.isArray(workWeeks))
+    const newArray = workWeeks.slice();
+    console.log(newArray);
+    newArray.push(newWorkWeek());
+    setWorkWeeks(newArray);
   }
+
   const removeEmployee = (removeIndex) => {
-    const newArray = activeEmployees.filter((employee, index) => index !== removeIndex);
-    setActiveEmployees(newArray);
+    const newEmployeesArray = activeEmployees.filter((employee, index) => index !== removeIndex);
+    setActiveEmployees(newEmployeesArray);
+    console.log('old:', workWeeks)
+    const newWorkWeekArray = workWeeks.filter((workWeek, index) => index !== removeIndex);
+    console.log('new:', newWorkWeekArray);
+    setWorkWeeks(newWorkWeekArray);
   }
+
+  const updateWorkWeek = (newWeekIndex, newWeek) => {
+    const newWeeksArray = workWeeks.map( (week, index) => index === newWeekIndex ? newWeek : week);
+    setWorkWeeks(newWeeksArray);
+  }
+
   return (
     <>
-      <div className="w-10/12 border-solid border-2 border-sky-500 text-md rounded-lg">
+      <div className="w-12/12 border-solid border-2 border-sky-500 text-md rounded-lg">
         {/* Employee Weeks*/}
         {activeEmployees.map((employee, index) => {
-          return <EmployeeWorkWeek key={index} fullName={employee} index={index} remove={removeEmployee} roles={roles}/>
+          return <EmployeeWorkWeek  key={index}
+                                    fullName={employee}
+                                    index={index}
+                                    workWeek={workWeeks[index]}
+                                    roles={roles}
+                                    remove={removeEmployee}
+                                    updateWorkWeek={updateWorkWeek}/>
         })}
         {/* Employee Selector */}
         <div className="w-full py-1 flex justify-start">
           <div className="w-4/12">
             <select className="cursor-pointer text-md"
-                        onChange={(e) => selectEmployee(e.target.value)}
+                        onChange={(e) => addEmployee(e.target.value)}
                         value="Add Employee"
                         name="roles"
                         id="roles">
@@ -38,12 +61,7 @@ const Schedule = ({ roles }) => {
           </div>
         </div>
       </div>
-      {/* Role Requirements*/}
-      <div className="w-10/12 text-md">
-        <div className="w-full py-1 flex justify-end">
-            {tempArray.map((num) => <RoleRequirements key={num} roles={roles}/>)}
-        </div>
-      </div>
+      
     </>
   )
 }

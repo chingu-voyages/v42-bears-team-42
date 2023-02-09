@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-const WorkDay = ({ roles }) => {
-  const [selection, setSelection] = useState();
+const WorkDay = ({ roles, activeRole, dayIndex, weekIndex, workWeek, updateWorkWeek }) => {
+  const [selection, setSelection] = useState(activeRole);
 
   const selectRole = (role) => {
-    console.log(role)
-    setSelection(role)
+    setSelection(role);
+    const newWorkWeek = workWeek.map((day, index) => index === dayIndex ? role : day)
+    updateWorkWeek(weekIndex, newWorkWeek);
   }
 
   return (
