@@ -103,8 +103,8 @@ const Calender = () => {
 
   return (
     <>
-      <div className="w-10/12 text-2xl text-center">{year}</div>
-      <div className="w-10/12 p-1 flex justify-between border-solid border-2 border-sky-500 text-2xl rounded-lg">
+      <div className="w-12/12 text-2xl text-center">{year}</div>
+      <div className="w-12/12 p-1 flex justify-between border-solid border-2 border-sky-500 text-2xl rounded-lg">
         <button className="px-1 mx-1 border-solid border-2 border-orange-400 rounded-lg"
               onClick={decrementWeek}>ᐸ
         </button>
@@ -129,10 +129,10 @@ const Calender = () => {
               onClick={incrementWeek}>ᐳ
         </button>
       </div>
-      <div className="w-10/12 flex justify-end text-xl rounded-lg">
+      <div className="w-12/12 flex justify-end text-xl rounded-lg">
         {days.map((day) => <div key={day} className="w-1/12 mx-4 py-1">{day}</div>)}
       </div>
-      <div className="w-10/12 flex justify-end text-xl rounded-lg">
+      <div className="w-12/12 flex justify-end text-xl rounded-lg">
         {daysOfWeek.map((day) => 
           (day.month === month) ?
             <div key={day.date} className="w-1/12 mx-4 py-1 text-black">{numAbbreviate(day.date)}</div>
