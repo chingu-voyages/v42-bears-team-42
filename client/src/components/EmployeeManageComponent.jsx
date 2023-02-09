@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import EmployeeService from "../utils/EmployeeService";
 import EmployeeData from "./EmployeeData";
 import EmployeeList from "./EmployeeList";
 
@@ -20,24 +21,8 @@ export default function EmployeeManageComponent() {
   }, []);
 
   const getEmployees = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BE_URL}/api/Employee/`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${authToken}` },
-        "Content-Type": "application/json",
-      }
-    )
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.success) {
-          setEmployees(data.employeeArr);
-          console.log(employees);
-        } else {
-          console.log("success false", data.error);
-          throw new Error(data.error);
-        }
-      });
+    const response = await EmployeeService.getAll();
+    setEmployees(response.employeeArray);
   };
 
   return (
@@ -70,8 +55,10 @@ export default function EmployeeManageComponent() {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* table body */}
-                    {!employees ? "" : <EmployeeList employees={employees} />}
+                    <tr>
+                      {/* table body */}
+                      {!employees ? "" : <EmployeeList employees={employees} />}
+                    </tr>
                   </tbody>
                 </table>
               </div>
