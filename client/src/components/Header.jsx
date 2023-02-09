@@ -11,8 +11,10 @@ export default function Header({ employee }) {
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState("");
-  const [user, setUser] = useState({...employee});
+  const [user, setUser] = useState({ ...employee });
 
   const navigate = useNavigate();
 
@@ -21,6 +23,19 @@ export default function Header({ employee }) {
       setError("");
     }, 5000);
     return setError(message);
+  };
+
+  const clearNewPasswordInput = () => {
+    let getNewPasswordValue = document.getElementById("new-password"),
+      getConfirmNewPasswordValue = document.getElementById(
+        "confirm-new-password"
+      );
+    if (getNewPasswordValue.value !== "") {
+      getNewPasswordValue.value = "";
+    }
+    if (getConfirmNewPasswordValue !== "") {
+      getConfirmNewPasswordValue.value = "";
+    }
   };
 
   const changeEmailHandler = async (e) => {
@@ -36,8 +51,8 @@ export default function Header({ employee }) {
         authToken
       );
       EmployeeService.resetStorageValue(updatedData);
-      
-      setUser({...user, email: newEmail});
+
+      setUser({ ...user, email: newEmail });
 
       setNewEmail("");
       setPassword("");
@@ -53,8 +68,43 @@ export default function Header({ employee }) {
     navigate("/");
   };
 
+  const changePasswordHandler = async (e) => {
+    e.preventDefault();
+
+    const authToken = TokenService.getAuthToken();
+
+    if (!newPassword || !confirmNewPassword)
+      return displayError("Both fields required.");
+
+    if (newPassword !== confirmNewPassword) {
+      setNewPassword("");
+      setConfirmNewPassword("");
+      clearNewPasswordInput();
+      return displayError("Passwords don't match. Try again.");
+    }
+
+    const data = await EmployeeService.changePassword(
+      employee._id,
+      newPassword
+    );
+    if (data.success) {
+      const updatedData = await EmployeeService.getEmployeefromDb(
+        employee._id,
+        authToken
+      );
+      EmployeeService.resetStorageValue(updatedData);
+
+      setNewPassword("");
+      setConfirmNewPassword("");
+      setShowChangePassword(false);
+    } else {
+      console.log(data);
+    }
+    return employee;
+  };
+
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-slate-900 p-3">
+    <nav className="h-full w-full flex items-center justify-between flex-wrap bg-slate-900 p-3">
       <div className="w-full block grow lg:flex lg:items-center lg:w-auto">
         {/* Profile */}
         <div className="flex-grow">
@@ -216,7 +266,7 @@ export default function Header({ employee }) {
           <h3 className="mb-4 text-xl font-medium text-gray-900">
             Change Password
           </h3>
-
+          {error && <span className="text-red-900 text-sm">{error}</span>}
           <form className="space-y-6" action="#">
             <div>
               <label
@@ -230,6 +280,7 @@ export default function Header({ employee }) {
                 name="new-password"
                 id="new-password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-800 focus:border-purple-800 block w-full p-2.5"
+                onChange={(e) => setNewPassword(e.target.value)}
                 required
               />
             </div>
@@ -245,12 +296,14 @@ export default function Header({ employee }) {
                 name="confirm-new-password"
                 id="confirm-new-password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-300 focus:border-purple-800 block w-full p-2.5"
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
                 required
               />
             </div>
             <button
               type="submit"
               className="w-full text-white bg-purple-700 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              onClick={changePasswordHandler}
             >
               Submit
             </button>

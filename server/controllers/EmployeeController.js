@@ -53,7 +53,7 @@ const updateEmployee = async (req, res) => {
     if (req.body.password) employee.password = req.body.password;
     if (req.body.permissions) employee.permissions = req.body.permissions;
     if (req.body.active) employee.active = req.body.active;
-
+    console.log(req.body);
     await employee.save();
     res.status(200).json({ success: true, message: "edit succeeded" });
   } catch (err) {
