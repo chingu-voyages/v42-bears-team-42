@@ -1,6 +1,8 @@
 export default function EmployeeData({ data }) {
   return (
     <>
+    <tr key={data._id}
+      className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
       <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
         {data.firstName}
       </td>
@@ -38,6 +40,7 @@ export default function EmployeeData({ data }) {
       <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
         de-active
       </span>
+      </tr>
     </>
   );
 }

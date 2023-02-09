@@ -55,10 +55,8 @@ export default function EmployeeManageComponent() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
                       {/* table body */}
                       {!employees ? "" : <EmployeeList employees={employees} />}
-                    </tr>
                   </tbody>
                 </table>
               </div>
