@@ -1,20 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import EmployeeService from "../utils/EmployeeService";
-import EmployeeData from "./EmployeeData";
 import EmployeeList from "./EmployeeList";
 
 export default function EmployeeManageComponent() {
-  const employee = JSON.parse(sessionStorage.employee);
-  const firstName = employee.firstName;
-  const lastName = employee.lastName;
-  const email = employee.email;
-  const permissions = employee.permissions;
-  const employeeId = employee._id;
-
   const [employees, setEmployees] = useState([]);
-  const authToken = sessionStorage.getItem("authToken");
 
   useEffect(() => {
     getEmployees();
@@ -50,13 +39,13 @@ export default function EmployeeManageComponent() {
                         Permissions
                       </th>
                       <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        de-active
+                        Deactivate
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                      {/* table body */}
-                      {!employees ? "" : <EmployeeList employees={employees} />}
+                    {/* table body */}
+                    {!employees ? "" : <EmployeeList employees={employees} />}
                   </tbody>
                 </table>
               </div>

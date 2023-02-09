@@ -63,7 +63,8 @@ function changePassword(id, newPassword) {
   }).then((response) => {
     if (response.ok) return response.json();
     console.log(response, "error in changePassword utils");
-
+  });
+}
 function getAll() {
   const authToken = TokenService.getAuthToken();
   return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/`, {
