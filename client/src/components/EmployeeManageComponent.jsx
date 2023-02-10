@@ -4,6 +4,7 @@ import EmployeeList from "./EmployeeList";
 
 export default function EmployeeManageComponent() {
   const [employees, setEmployees] = useState([]);
+  const [showEditEmployee, setShowEditEmployee] = useState(false);
 
   useEffect(() => {
     getEmployees();
@@ -45,7 +46,15 @@ export default function EmployeeManageComponent() {
                   </thead>
                   <tbody>
                     {/* table body */}
-                    {!employees ? "" : <EmployeeList employees={employees} />}
+                    {!employees ? (
+                      ""
+                    ) : (
+                      <EmployeeList
+                        employees={employees}
+                        showEditEmployee={showEditEmployee}
+                        setShowEditEmployee={setShowEditEmployee}
+                      />
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -149,7 +158,7 @@ export default function EmployeeManageComponent() {
                   </table>
                   <div className="lg:py-5 py-0 px-1">
                     <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                      New add
+                      Add Employee
                     </button>
                   </div>
                 </div>

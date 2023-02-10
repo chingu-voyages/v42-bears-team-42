@@ -1,4 +1,8 @@
-export default function EmployeeData({ data }) {
+export default function EmployeeData({
+  data,
+  showEditEmployee,
+  setShowEditEmployee,
+}) {
   return (
     <>
       <tr
@@ -8,40 +12,31 @@ export default function EmployeeData({ data }) {
         <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
           {data.firstName}
         </td>
-        <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
-          FirstName
-        </span>
 
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
           {data.lastName}
         </td>
-        <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
-          LastName
-        </span>
 
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
           {data.email}
         </td>
-        <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
-          Email
-        </span>
 
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
-          <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
-            Permissions
-          </span>
           <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold">
             {data.permissions}
           </span>
         </td>
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
-          <button className="text-blue-400 hover:text-blue-600 underline pl-6">
+          <button
+            className="text-blue-400 hover:text-blue-600 pl-6"
+            onClick={() => setShowEditEmployee(!showEditEmployee)}
+          >
+            Edit
+          </button>
+          <button className="text-blue-400 hover:text-blue-600 pl-6">
             Remove
           </button>
         </td>
-        <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
-          Deactivate
-        </span>
       </tr>
     </>
   );

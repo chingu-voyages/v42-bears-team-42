@@ -7,7 +7,7 @@ const EmployeeService = {
   resetStorageValue,
   changePassword,
   getAll,
-  // signIn,
+  editEmployee,
 };
 
 const BASE_URL = `${process.env.REACT_APP_BE_URL}/api/Employee`;
@@ -77,21 +77,16 @@ function getAll() {
   });
 }
 
-// async function signIn(email, password) {
-//   return await fetch(`${BASE_URL}/signin`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ email, password }),
-//   })
-//     .then((data) => data.json())
-//     .then((data) => {
-//       if (data.success) {
-//         TokenService.setTokens();
-//       } else {
-//         console.log("success false", data.error);
-//         throw new Error(data.error);
-//       }
-//     });
-// }
+function editEmployee(id) {
+  const authToken = TokenService.getAuthToken();
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+}
 
 export default EmployeeService;
