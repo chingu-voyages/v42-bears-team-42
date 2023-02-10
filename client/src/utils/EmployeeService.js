@@ -6,7 +6,9 @@ const EmployeeService = {
   changeEmail,
   resetStorageValue,
   changePassword,
-  getAll
+  getAll,
+  editEmployee,
+  deactivateEmployee,
 };
 
 const BASE_URL = `${process.env.REACT_APP_BE_URL}/api/Employee`;
@@ -77,21 +79,40 @@ function getAll() {
   });
 }
 
-// async function signIn(email, password) {
-//   return await fetch(`${BASE_URL}/signin`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ email, password }),
-//   })
-//     .then((data) => data.json())
-//     .then((data) => {
-//       if (data.success) {
-//         TokenService.setTokens();
-//       } else {
-//         console.log("success false", data.error);
-//         throw new Error(data.error);
-//       }
-//     });
-// }
+function editEmployee(id, firstName, lastName, email, permissions) {
+  const authToken = TokenService.getAuthToken();
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ firstName, lastName, email, permissions }),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log(response, "error in editEmployee utils");
+    }
+  });
+}
+
+function deactivateEmployee(id, active) {
+  const authToken = TokenService.getAuthToken();
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ active }),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log(response, "error in deactivateEmployee utils");
+    }
+  });
+}
 
 export default EmployeeService;
