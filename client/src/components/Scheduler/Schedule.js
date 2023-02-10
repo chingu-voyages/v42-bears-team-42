@@ -46,7 +46,7 @@ const Schedule = ({ employees, roles }) => {
                                     updateWorkWeek={updateWorkWeek}/>
         })}
         {/* Employee Selector */}
-        <div className="w-full py-1 flex justify-start">
+        <div className="w-full py-1 pl-1 flex justify-start">
           <div className="text-sm pl-1">
             <select className="cursor-pointer text-md bg-gray-200"
                         onChange={(e) => addEmployee(e.target.value)}
