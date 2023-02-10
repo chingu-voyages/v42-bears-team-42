@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EmployeeService from "../utils/EmployeeService";
 import EmployeeList from "./EmployeeList";
+import EditEmployee from "./modals/EditEmployee";
 
 export default function EmployeeManageComponent() {
   const [employees, setEmployees] = useState([]);
@@ -93,6 +94,15 @@ export default function EmployeeManageComponent() {
                     </thead>
                     <tbody>
                       {/* loop */}
+                      {!showEditEmployee ? (
+                        ""
+                      ) : (
+                        <EditEmployee
+                          onClose={() => {
+                            setShowEditEmployee(false);
+                          }}
+                        />
+                      )}
                       {/* table body */}
                       <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                         {/* First Name */}
