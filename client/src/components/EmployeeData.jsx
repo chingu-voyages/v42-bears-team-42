@@ -4,6 +4,7 @@ export default function EmployeeData({
   setShowEditEmployee,
   setEmployee,
 }) {
+  const handleRemove = async () => {};
   return (
     <>
       <tr
@@ -37,7 +38,10 @@ export default function EmployeeData({
           >
             Edit
           </button>
-          <button className="text-blue-400 hover:text-blue-600 pl-6">
+          <button
+            className="text-blue-400 hover:text-blue-600 pl-6"
+            onClick={handleRemove}
+          >
             Remove
           </button>
         </td>
