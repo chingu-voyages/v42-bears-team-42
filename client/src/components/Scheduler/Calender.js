@@ -103,43 +103,49 @@ const Calender = () => {
 
   return (
     <>
-      <div className="w-10/12 text-2xl text-center">{year}</div>
-      <div className="w-10/12 p-1 flex justify-between border-solid border-2 border-sky-500 text-2xl rounded-lg">
-        <button className="px-1 mx-1 border-solid border-2 border-orange-400 rounded-lg"
-              onClick={decrementWeek}>ᐸ
-        </button>
-        <div className="w-1/3">
-          { 
-            (monthsDisplayed.length > 0 && monthsDisplayed[0] !== month) &&
-              <span className="w-1/3 text-gray-400">{monthsDisplayed[0] + ' / '}</span>
-          }
-          <select className="w-1/3 bg-white-100 inline-block cursor-pointer"
-                  onChange={(e) => monthSelect(e.target.value)}
-                  value={month}
-                  name="months"
-                  id="months">
-            { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
-          </select>
-          { 
-            (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
-              <span className="w-1/3 text-gray-400">{' / ' + monthsDisplayed[1]}</span>
-          }
+      <div className='border-2 border-purple-700 rounded-lg'>
+        <div className="w-12/12 font-semibold text-2xl text-center bg-gray-400 py-1">{year}</div>
+        <div className="w-12/12 p-1 flex justify-between text-2xl border-t-2 border-purple-700">
+          <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
+                onClick={decrementWeek}>ᐸ
+          </button>
+          <div className="">
+            { 
+              (monthsDisplayed.length > 0 && monthsDisplayed[0] !== month) &&
+                <span className="text-gray-400">{monthsDisplayed[0] + ' / '}</span>
+            }
+            <select className="bg-gray-200 inline-block cursor-pointer"
+                    onChange={(e) => monthSelect(e.target.value)}
+                    value={month}
+                    name="months"
+                    id="months">
+              { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
+            </select>
+            { 
+              (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
+                <span className="text-gray-400">{' / ' + monthsDisplayed[1]}</span>
+            }
+          </div>
+          <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
+                onClick={incrementWeek}>ᐳ
+          </button>
         </div>
-        <button className="px-1 mx-1 border-solid border-2 border-orange-400 rounded-lg"
-              onClick={incrementWeek}>ᐳ
-        </button>
       </div>
-      <div className="w-10/12 flex justify-end text-xl rounded-lg">
-        {days.map((day) => <div key={day} className="w-1/12 mx-4 py-1">{day}</div>)}
-      </div>
-      <div className="w-10/12 flex justify-end text-xl rounded-lg">
-        {daysOfWeek.map((day) => 
-          (day.month === month) ?
-            <div key={day.date} className="w-1/12 mx-4 py-1 text-black">{numAbbreviate(day.date)}</div>
-          :
-            <div key={day.date} className="w-1/12 mx-4 py-1 text-gray-400">{numAbbreviate(day.date)}</div>
-        )
-        }
+      <div className="flex justify-end w-full">        
+        <div className="w-9/12 pl-2">
+          <div className="w-12/12 flex justify-between text-xl">
+            {days.map((day) => <div key={day} className="w-1/12 mx-4 py-1">{day}</div>)}
+          </div>
+          <div className="w-12/12 flex justify-between text-xl rounded-lg">
+            {daysOfWeek.map((day) => 
+              (day.month === month) ?
+                <div key={day.date} className="w-1/12 mx-4 py-1 text-black">{numAbbreviate(day.date)}</div>
+              :
+                <div key={day.date} className="w-1/12 mx-4 py-1 text-gray-400">{numAbbreviate(day.date)}</div>
+            )
+            }
+          </div>
+        </div>
       </div>
     </>
 
