@@ -16,6 +16,7 @@ const createRole = async (req, res) => {
 const getAllRoles = async (req, res) => {
   try {
       const roleArray = await Role.find().lean();
+      console.log(roleArray);
       res.status(200).json(roleArray);
   } catch (err) {
       res.status(500).json({ message: err.message})
