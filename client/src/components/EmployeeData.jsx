@@ -1,4 +1,4 @@
-import EmployeeService from "../utils/EmployeeService";
+// import EmployeeService from "../utils/EmployeeService";
 
 export default function EmployeeData({
   data,

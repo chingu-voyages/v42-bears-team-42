@@ -16,12 +16,12 @@ export default function EmployeeManageComponent() {
   const getEmployees = async () => {
     const response = await EmployeeService.getAll();
 
-    const active = response.employeeArray.filter(
-      (employee) => employee.active === true
-    );
-    const notActive = response.employeeArray.filter(
-      (employee) => employee.active === false
-    );
+    // const active = response.employeeArray.filter(
+    //   (employee) => employee.active === true
+    // );
+    // const notActive = response.employeeArray.filter(
+    //   (employee) => employee.active === false
+    // );
 
     setEmployees(response.employeeArray);
   };
