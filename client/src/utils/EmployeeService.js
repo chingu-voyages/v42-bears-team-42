@@ -77,15 +77,21 @@ function getAll() {
   });
 }
 
-function editEmployee(id) {
+function editEmployee(id, firstName, lastName, email, permissions) {
   const authToken = TokenService.getAuthToken();
-  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/`, {
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${authToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({}),
+    body: JSON.stringify({ firstName, lastName, email, permissions }),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log(response, "error in editEmployee utils");
+    }
   });
 }
 

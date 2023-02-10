@@ -5,6 +5,7 @@ import EditEmployee from "./modals/EditEmployee";
 
 export default function EmployeeManageComponent() {
   const [employees, setEmployees] = useState([]);
+  const [employee, setEmployee] = useState();
   const [showEditEmployee, setShowEditEmployee] = useState(false);
 
   useEffect(() => {
@@ -54,6 +55,7 @@ export default function EmployeeManageComponent() {
                         employees={employees}
                         showEditEmployee={showEditEmployee}
                         setShowEditEmployee={setShowEditEmployee}
+                        setEmployee={setEmployee}
                       />
                     )}
                   </tbody>
@@ -98,6 +100,8 @@ export default function EmployeeManageComponent() {
                         ""
                       ) : (
                         <EditEmployee
+                          getEmployees={getEmployees}
+                          employee={employee}
                           onClose={() => {
                             setShowEditEmployee(false);
                           }}

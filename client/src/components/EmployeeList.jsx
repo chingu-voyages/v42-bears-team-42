@@ -5,6 +5,7 @@ export default function EmployeeList({
   employees,
   showEditEmployee,
   setShowEditEmployee,
+  setEmployee,
 }) {
   return employees.map((data) => {
     return (
@@ -13,6 +14,7 @@ export default function EmployeeList({
         data={data}
         showEditEmployee={showEditEmployee}
         setShowEditEmployee={setShowEditEmployee}
+        setEmployee={setEmployee}
       />
     );
   });

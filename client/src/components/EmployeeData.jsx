@@ -2,6 +2,7 @@ export default function EmployeeData({
   data,
   showEditEmployee,
   setShowEditEmployee,
+  setEmployee,
 }) {
   return (
     <>
@@ -29,7 +30,10 @@ export default function EmployeeData({
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
           <button
             className="text-blue-400 hover:text-blue-600 pl-6"
-            onClick={() => setShowEditEmployee(!showEditEmployee)}
+            onClick={() => {
+              setEmployee(data);
+              setShowEditEmployee(!showEditEmployee);
+            }}
           >
             Edit
           </button>
