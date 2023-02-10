@@ -115,8 +115,8 @@ export default function EditEmployee({ onClose, employee, getEmployees }) {
                   <div className="relative">
                     <select
                       className="block appearance-none w-full bg-gray-50 border border-gray-300 text-gray-900 py-3 px-4 pr-8 text-sm rounded leading-tight focus:outline-none focus:bg-white focus:border-purple-800"
-                      defaultValue={selectedEmployee.permissions}
                       name="permissions"
+                      value={selectedEmployee.permissions}
                       onChange={(e) =>
                         handleOnChange("permissions", e.target.value)
                       }
