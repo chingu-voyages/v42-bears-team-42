@@ -8,6 +8,7 @@ const EmployeeService = {
   changePassword,
   getAll,
   editEmployee,
+  deactivateEmployee,
 };
 
 const BASE_URL = `${process.env.REACT_APP_BE_URL}/api/Employee`;
@@ -91,6 +92,24 @@ function editEmployee(id, firstName, lastName, email, permissions) {
       return response.json();
     } else {
       console.log(response, "error in editEmployee utils");
+    }
+  });
+}
+
+function deactivateEmployee(id, active) {
+  const authToken = TokenService.getAuthToken();
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ active }),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.log(response, "error in deactivateEmployee utils");
     }
   });
 }

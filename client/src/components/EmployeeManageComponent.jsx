@@ -70,6 +70,14 @@ export default function EmployeeManageComponent() {
 
   const getEmployees = async () => {
     const response = await EmployeeService.getAll();
+
+    const active = response.employeeArray.filter(
+      (employee) => employee.active === true
+    );
+    const notActive = response.employeeArray.filter(
+      (employee) => employee.active === false
+    );
+
     setEmployees(response.employeeArray);
   };
 
@@ -98,7 +106,7 @@ export default function EmployeeManageComponent() {
                         Permissions
                       </th>
                       <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Deactivate
+                        Update
                       </th>
                     </tr>
                   </thead>
