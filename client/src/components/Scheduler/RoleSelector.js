@@ -19,7 +19,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
   // }
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden flex-1 mr-2 border-2 border-black bg-white">
       { activeRoles.map((role, roleIndex) =>{
           return <RoleControl key={dayIndex + role.role}
                               role={role}
@@ -29,7 +29,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
                               updateRequirements={updateRequirements}/>
         })
       }
-      <select className="cursor-pointer text-md bg-gray-200"
+      <select className="cursor-pointer text-md bg-white flex-1"
               onChange={(e) => addRole(e.target.value)}
               value="Add Req"
               name="roles"

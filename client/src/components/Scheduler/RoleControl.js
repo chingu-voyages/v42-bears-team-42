@@ -26,12 +26,12 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
   }
 
   return (
-    <div className="flex flex-row">
-      <div className='px-1 w-5/6 text-left'>{role.role}</div>
-      <input type="text" value={inputValue} maxLength="2" className="w-5 border-solid border-2 border-gray-400 text-black text-sm rounded-sm bg-gray-200 text-right"
+    <div className="flex flex-row w-full">
+      <div className='basis-9/12 text-left pl-1'>{role.role}</div>
+      <input type="text" value={inputValue} maxLength="2" className="w-2/12 text-black text-sm bg-white text-right text-bottom mr-1"
         onInput={(e) => {setRoleNumber(e.target.value)}}>
       </input>
-      <div className="text-red-500 text-sm ml-1" id={roleIndex} onClick={removeRole}>x</div>
+      <div className="w-1/12 text-red-500 text-sm text-bottom pr-1" id={roleIndex} onClick={removeRole}>x</div>
     </div>
   )
 };

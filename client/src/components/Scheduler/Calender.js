@@ -103,47 +103,45 @@ const Calender = () => {
 
   return (
     <>
-      <div className='border-2 border-purple-700 rounded-lg'>
-        <div className="w-12/12 font-semibold text-2xl text-center bg-gray-400 py-1">{year}</div>
-        <div className="w-12/12 p-1 flex justify-between text-2xl border-t-2 border-purple-700">
-          <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
-                onClick={decrementWeek}>ᐸ
-          </button>
-          <div className="">
-            { 
-              (monthsDisplayed.length > 0 && monthsDisplayed[0] !== month) &&
-                <span className="text-gray-400">{monthsDisplayed[0] + ' / '}</span>
-            }
-            <select className="bg-gray-200 inline-block cursor-pointer"
-                    onChange={(e) => monthSelect(e.target.value)}
-                    value={month}
-                    name="months"
-                    id="months">
-              { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
-            </select>
-            { 
-              (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
-                <span className="text-gray-400">{' / ' + monthsDisplayed[1]}</span>
-            }
-          </div>
-          <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
-                onClick={incrementWeek}>ᐳ
-          </button>
+      <div className='flex justify-between w-full p-1 border-2 border-purple-700 border-b-0 rounded-t-lg text-2xl bg-black'>
+        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700"
+              onClick={decrementWeek}>ᐸ
+        </button>
+        <div className="">
+          { 
+            (monthsDisplayed.length > 0 && monthsDisplayed[0] !== month) &&
+              <span className="text-white">{monthsDisplayed[0] + ' / '}</span>
+          }
+          <select className="bg-black inline-block cursor-pointer text-white text-right"
+                  onChange={(e) => monthSelect(e.target.value)}
+                  value={month}
+                  name="months"
+                  id="months">
+            { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
+          </select>
+          { 
+            (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
+              <span className="text-gray-400">{' / ' + monthsDisplayed[1]}</span>
+          }
         </div>
+        <div className="text-white">{year}</div>
+        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700"
+              onClick={incrementWeek}>ᐳ
+        </button>
       </div>
-      <div className="flex justify-end w-full">        
-        <div className="w-9/12 pl-2">
-          <div className="w-12/12 flex justify-between text-xl">
-            {days.map((day) => <div key={day} className="w-1/12 mx-4 py-1">{day}</div>)}
+      <div className="flex justify-end w-full border-purple-700 border-x-2 bg-white">
+        <div className="w-9/12">
+          <div className="w-full flex justify-between text-xl">
+            {days.map((day) => <div key={day} className="flex-1">{day}</div>)}
           </div>
-          <div className="w-12/12 flex justify-between text-xl rounded-lg">
-            {daysOfWeek.map((day) => 
-              (day.month === month) ?
-                <div key={day.date} className="w-1/12 mx-4 py-1 text-black">{numAbbreviate(day.date)}</div>
-              :
-                <div key={day.date} className="w-1/12 mx-4 py-1 text-gray-400">{numAbbreviate(day.date)}</div>
-            )
-            }
+          <div className="w-full flex justify-between text-xl rounded-lg">
+            {daysOfWeek.map((day) => {
+              return (
+                <div key={day.date} className={"flex-1 " + (day.month === month ? "text-black" : "text-gray-400")}>
+                  {numAbbreviate(day.date)}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
@@ -152,4 +150,54 @@ const Calender = () => {
   )
 }
 
+
+/*
+  return (
+    <>
+      <div className='flex justify-between w-full p-1 border-2 border-b-0 border-purple-700 rounded-t-lg text-2xl bg-gray-400'>
+        <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
+              onClick={decrementWeek}>ᐸ
+        </button>
+        <div className="">
+          { 
+            (monthsDisplayed.length > 0 && monthsDisplayed[0] !== month) &&
+              <span className="text-gray-400">{monthsDisplayed[0] + ' / '}</span>
+          }
+          <select className="bg-gray-400 inline-block cursor-pointer"
+                  onChange={(e) => monthSelect(e.target.value)}
+                  value={month}
+                  name="months"
+                  id="months">
+            { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
+          </select>
+          { 
+            (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
+              <span className="text-gray-400">{' / ' + monthsDisplayed[1]}</span>
+          }
+        </div>
+        <div className="">{year}</div>
+        <button className="px-1 mx-1 border-solid border-2 border-black rounded-lg"
+              onClick={incrementWeek}>ᐳ
+        </button>
+      </div>
+      <div className="flex justify-end w-full border-purple-700 border-x-2">
+        <div className="w-9/12">
+          <div className="w-full flex justify-between text-xl">
+            {days.map((day) => <div key={day} className="flex-1">{day}</div>)}
+          </div>
+          <div className="w-full flex justify-between text-xl rounded-lg">
+            {daysOfWeek.map((day) => {
+              return (
+                <div key={day.date} className={"flex-1 " + (day.month === month ? "text-black" : "text-gray-400")}>
+                  {numAbbreviate(day.date)}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+
+  )
+*/
 export default Calender;
