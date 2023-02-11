@@ -8,6 +8,7 @@ export default function EmployeeManageComponent() {
   const [employees, setEmployees] = useState([]);
   const [employee, setEmployee] = useState();
   const [showEditEmployee, setShowEditEmployee] = useState(false);
+  const [showInactiveEmployees, setShowInactiveEmployees] = useState(false);
 
   useEffect(() => {
     getEmployees();
@@ -15,80 +16,93 @@ export default function EmployeeManageComponent() {
 
   const getEmployees = async () => {
     const response = await EmployeeService.getAll();
-
-    // const active = response.employeeArray.filter(
-    //   (employee) => employee.active === true
-    // );
-    // const notActive = response.employeeArray.filter(
-    //   (employee) => employee.active === false
-    // );
-
+    // const active = response.filter((employee) => employee.active === true);
     setEmployees(response.employeeArray);
   };
 
-  return (
-    <div>
-      {/* Add an employee */}
-      <EmployeeAdd getEmployees={getEmployees} />
+  // const notActive = employees.filter((employee) => employee.active === false);
 
-      {/* Employee table */}
-      <div className="flex flex-col px-2 h-screen w-screen">
-        <div className="overflow-x-auto">
-          <div className="p-1.5 w-full inline-block align-middle">
-            <div className="overflow-hidden  rounded-lg">
-              <div className="border-collapse">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead>
-                    {/* Table header */}
-                    <tr>
-                      <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        First name
-                      </th>
-                      <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Last Name
-                      </th>
-                      <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Email
-                      </th>
-                      <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Permissions
-                      </th>
-                      <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
-                        Update
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Table body */}
-                    {!employees ? (
-                      ""
-                    ) : (
-                      <EmployeeList
-                        employees={employees}
-                        showEditEmployee={showEditEmployee}
-                        setShowEditEmployee={setShowEditEmployee}
-                        setEmployee={setEmployee}
-                      />
-                    )}
-                    {/* Edit employee modal */}
-                    {!showEditEmployee ? (
-                      ""
-                    ) : (
-                      <EditEmployee
-                        getEmployees={getEmployees}
-                        employee={employee}
-                        onClose={() => {
-                          setShowEditEmployee(false);
-                        }}
-                      />
-                    )}
-                  </tbody>
-                </table>
+  const handleRemove = async () => {};
+
+  return (
+    <>
+      <div>
+        {/* Add an employee */}
+        <EmployeeAdd getEmployees={getEmployees} />
+        <div>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" className="sr-only peer" />
+            <div
+              className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+              onClick={() => {
+                setShowInactiveEmployees(!showInactiveEmployees);
+                setEmployees();
+              }}
+            ></div>
+            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+              Show Inactive Employees
+            </span>
+          </label>
+        </div>
+        {/* Employee table */}
+        <div className="flex flex-col min-h-full">
+          <div className="overflow-x-auto">
+            <div className="w-2/3 inline-block align-middle">
+              <div className="overflow-hidden">
+                <div className="border-collapse">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead>
+                      {/* Table header */}
+                      <tr>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          First name
+                        </th>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          Last Name
+                        </th>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          Email
+                        </th>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          Permissions
+                        </th>
+                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          Update
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Table body */}
+                      {!employees ? (
+                        ""
+                      ) : (
+                        <EmployeeList
+                          employees={employees}
+                          showEditEmployee={showEditEmployee}
+                          setShowEditEmployee={setShowEditEmployee}
+                          setEmployee={setEmployee}
+                        />
+                      )}
+                      {/* Edit employee modal */}
+                      {!showEditEmployee ? (
+                        ""
+                      ) : (
+                        <EditEmployee
+                          getEmployees={getEmployees}
+                          employee={employee}
+                          onClose={() => {
+                            setShowEditEmployee(false);
+                          }}
+                        />
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -32,8 +32,8 @@ export default function EmployeeData({
           <span
             className={
               data.permissions === "manager"
-                ? "rounded bg-green-400 py-1 px-3 text-xs font-bold"
-                : "rounded bg-blue-400 py-1 px-3 text-xs font-bold"
+                ? "rounded bg-purple-300 py-1 px-3 text-xs font-bold"
+                : "rounded bg-gray-300 py-1 px-3 text-xs font-bold"
             }
           >
             {data.permissions}
