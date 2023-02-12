@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
 import Calender from "./Calender";
 import Schedule from "./Schedule";
-import RoleRequirements from "./RoleRequirements";
 import EmployeeService from "../../utils/EmployeeService";
 import ScheduleService from '../../utils/ScheduleService';
-
-
-//const employees = ["George Anderson", "Susan Lee", "Hector Hidalgo", "Vittorio Stanza"];
-//const roles = ["Off", "Opener", "Mid", "Closer"];
 
 const Scheduler = () => {
   const [employees, setEmployees] = useState([]);
   const [roles, setRoles] = useState([]);
 
   const fetchEmployees = async () => {
+    if(employees.length > 0) return;
     const response = await EmployeeService.getAll();
     console.log(response.employeeArray);
     //filter active employees and map name and id to state
@@ -30,6 +26,7 @@ const Scheduler = () => {
   };
 
   const fetchRoles = async() => {
+    if(roles.length > 0) return; 
     const response = await ScheduleService.getRoles();
     const mappedValues = response.map(role => role.name);
     mappedValues.unshift('Off'); //default role
@@ -39,7 +36,7 @@ const Scheduler = () => {
   useEffect(() => {
     fetchEmployees();
     fetchRoles();
-  },[])
+  }, []);
 
   return (
     <>
