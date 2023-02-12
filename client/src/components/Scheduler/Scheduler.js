@@ -45,7 +45,6 @@ const Scheduler = () => {
     <>
       <Calender/>
       <Schedule employees={employees} roles={roles}/>
-      <RoleRequirements roles={roles}/>
     </>
   )
 }
