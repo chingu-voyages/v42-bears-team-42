@@ -49,6 +49,12 @@ const Calender = () => {
   const [daysOfWeek, setDaysOfWeek] = useState([]);
   const [startOfWeekDate, setStartOfWeekDate] = useState(null);
 
+  /*
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+  </svg>
+  */
+
   const incrementWeek = () => {
     const date = new Date(startOfWeekDate);
     for (let i = 0; i < 7; i++) date.setDate(date.getDate() + 1);
@@ -104,8 +110,10 @@ const Calender = () => {
   return (
     <>
       <div className='flex justify-between w-full p-1 border-2 border-purple-700 border-b-0 rounded-t-lg text-2xl bg-black'>
-        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700"
-              onClick={decrementWeek}>ᐸ
+        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={decrementWeek}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
         </button>
         <div className="">
           { 
@@ -125,8 +133,10 @@ const Calender = () => {
           }
         </div>
         <div className="text-white">{year}</div>
-        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700"
-              onClick={incrementWeek}>ᐳ
+        <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={incrementWeek}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
         </button>
       </div>
       <div className="flex justify-end w-full border-purple-700 border-x-2 bg-white">
