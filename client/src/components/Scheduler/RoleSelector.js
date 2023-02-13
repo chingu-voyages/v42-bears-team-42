@@ -19,7 +19,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
   // }
 
   return (
-    <div className="w-1/12 mx-4 overflow-hidden">
+    <div className="overflow-hidden">
       { activeRoles.map((role, roleIndex) =>{
           return <RoleControl key={dayIndex + role.role}
                               role={role}
@@ -29,15 +29,14 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
                               updateRequirements={updateRequirements}/>
         })
       }
-      <select className="cursor-pointer text-md"
-                  onChange={(e) => addRole(e.target.value)}
-                  value="Add Role"
-                  name="roles"
-                  id="roles">
-              <option selected disabled>Add Role</option>
+      <select className="cursor-pointer text-md bg-gray-200"
+              onChange={(e) => addRole(e.target.value)}
+              value="Add Req"
+              name="roles"
+              id="roles">
+              <option selected disabled>Add Req</option>
               {options.filter((name, index) => index !== 0 && !activeRoles.some((role) => role.role === name))
-                      .map((name) =>
-                <option key={name} value={name}>{name}</option> )}
+                      .map((name) => <option key={name} value={name}>{name}</option> )}
       </select>
     </div>
   )

@@ -10,8 +10,8 @@ const WorkDay = ({ roles, activeRole, dayIndex, weekIndex, workWeek, updateWorkW
   }
 
   return (
-    <div className="border-box border-solid border-2 border-orange-300 w-1/12 mx-4 overflow-hidden">
-      <select className="cursor-pointer text-sm"
+    <div className="border-box border-solid border-2 border-purple-300 w-1/12 mx-4 overflow-hidden">
+      <select className="cursor-pointer text-sm bg-gray-200"
                     onChange={(e) => selectRole(e.target.value)}
                     value={selection}
                     name="roles"
