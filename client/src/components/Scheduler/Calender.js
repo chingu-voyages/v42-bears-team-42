@@ -22,8 +22,26 @@ const numAbbreviate = (num) => {
   return String(num + postfix);
 }
 
+/*
+:on load: get today and send through calendar setup
+:on calendar setup:
+-find prior Sunday for startDate:
+function getPrevSunday(date) {
+  return date.setDate(date.getDate() - date.getDay());
+}
+-check if schedule already exists for current PrevSunday/Start
+ -if so, load/end; if not, set new default schedule
+
+:new default schedule
+-build daysArray
+
+:when decrementing to before previous Sunday, prior schedules should load
+:when switching to new week, ask to save if anything modified (schedule modified state)
+*/
+
 const firstDateOfWeek = (date) => {
   let newDate = new Date(date);
+  
   while (days[newDate.getDay()] !== 'Sunday') {
     newDate.setDate(newDate.getDate() - 1);
   }
@@ -83,10 +101,10 @@ const Calender = () => {
   }
 
   const tallyMonthsDisplayed = (daysArray) => {
-    let tally = [];
     const first = daysArray[0].month;
-    const last = daysArray[6].month
-    if ( first !== last) tally = [first, last]
+    const last =  daysArray[6].month;
+    let tally = [first];
+    if(first !== last) tally.push(daysArray[6]);
     return tally;
   }
  
@@ -117,7 +135,7 @@ const Calender = () => {
           }
           <select className="bg-black cursor-pointer text-purple-700 text-left"
                   onChange={(e) => monthSelect(e.target.value)}
-                  value={monthsDisplayed[1]}
+                  value={monthsDisplayed[1] || monthsDisplayed[0]}
                   name="months"
                   id="months">
             { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
