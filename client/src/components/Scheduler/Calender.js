@@ -82,7 +82,7 @@ const Calender = () => {
   const setCalenderDates = (date) => {
     if (date) {
       setYear(date.getFullYear());
-      setMonth(months[date.getMonth()]);
+      // setMonth(months[date.getMonth()]);
       const startDate = firstDateOfWeek(date);
       const daysArray = createWeekDaysArray(startDate)
       setDaysOfWeek(daysArray);
@@ -104,7 +104,11 @@ const Calender = () => {
     const first = daysArray[0].month;
     const last =  daysArray[6].month;
     let tally = [first];
-    if(first !== last) tally.push(last);
+    setMonth(first);
+    if(first !== last) {
+      tally.push(last);
+      setMonth(last);
+    }
     return tally;
   }
  
@@ -140,10 +144,6 @@ const Calender = () => {
                   id="months">
             { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
           </select>
-          { 
-            // (monthsDisplayed.length > 0 && monthsDisplayed[1] !== month) &&
-            //   <span className="text-gray-400">{' / ' + monthsDisplayed[1]}</span>
-          }
         </div>
         <div className="text-white">{year}</div>
         {/* > Button */}
@@ -161,7 +161,7 @@ const Calender = () => {
           <div className="w-full flex justify-between text-xl rounded-lg">
             {daysOfWeek.map((day) => {
               return (
-                <div key={day.date} className={"flex-1 " + (day.month === month ? "text-black" : "text-gray-400")}>
+                <div key={day.date} className={"flex-1 " + (day.month === month ? "text-purple-700" : "text-purple-400")}>
                   {numAbbreviate(day.date)}
                 </div>
               )
