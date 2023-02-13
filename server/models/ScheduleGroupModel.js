@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
 import Schedule from './ScheduleModel.js'
+
 const RoleRequirements = new mongoose.Schema({
   roles: [{name: String, number: number}]
-})
+});
+
 const ScheduleGroupSchema = new mongoose.Schema({
-  start: Date,
+  start: {type: String, required: true},
   schedules: [{
     type: mongoose.Types.ObjectId,
     ref: Schedule
