@@ -104,7 +104,7 @@ const Calender = () => {
     const first = daysArray[0].month;
     const last =  daysArray[6].month;
     let tally = [first];
-    if(first !== last) tally.push(daysArray[6]);
+    if(first !== last) tally.push(last);
     return tally;
   }
  
@@ -135,7 +135,7 @@ const Calender = () => {
           }
           <select className="bg-black cursor-pointer text-purple-700 text-left"
                   onChange={(e) => monthSelect(e.target.value)}
-                  value={monthsDisplayed[1] || monthsDisplayed[0]}
+                  value={monthsDisplayed.length > 1 ? monthsDisplayed[1] : monthsDisplayed[0]}
                   name="months"
                   id="months">
             { months.map((monthLabel) => <option key={monthLabel} value={monthLabel}>{monthLabel}</option> )}
