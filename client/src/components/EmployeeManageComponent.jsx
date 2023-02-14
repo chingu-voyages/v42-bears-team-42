@@ -12,17 +12,19 @@ export default function EmployeeManageComponent() {
 
   useEffect(() => {
     getEmployees();
-  }, []);
+  }, [employees]);
 
   const getEmployees = async () => {
     const response = await EmployeeService.getAll();
-    // const active = response.filter((employee) => employee.active === true);
-    setEmployees(response.employeeArray);
+    if (!showInactiveEmployees) {
+      const active = await response.employeeArray.filter(
+        (employee) => employee.active === true
+      );
+      setEmployees(active);
+    } else {
+      setEmployees(response.employeeArray);
+    }
   };
-
-  // const notActive = employees.filter((employee) => employee.active === false);
-
-  const handleRemove = async () => {};
 
   return (
     <>
@@ -36,7 +38,7 @@ export default function EmployeeManageComponent() {
               className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
               onClick={() => {
                 setShowInactiveEmployees(!showInactiveEmployees);
-                setEmployees();
+                getEmployees();
               }}
             ></div>
             <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -51,7 +53,7 @@ export default function EmployeeManageComponent() {
               <div className="overflow-hidden">
                 <div className="border-collapse">
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead>
+                    <thead className="sticky top-0">
                       {/* Table header */}
                       <tr>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
@@ -81,22 +83,23 @@ export default function EmployeeManageComponent() {
                           showEditEmployee={showEditEmployee}
                           setShowEditEmployee={setShowEditEmployee}
                           setEmployee={setEmployee}
-                        />
-                      )}
-                      {/* Edit employee modal */}
-                      {!showEditEmployee ? (
-                        ""
-                      ) : (
-                        <EditEmployee
                           getEmployees={getEmployees}
-                          employee={employee}
-                          onClose={() => {
-                            setShowEditEmployee(false);
-                          }}
                         />
                       )}
                     </tbody>
                   </table>
+                  {/* Edit employee modal */}
+                  {!showEditEmployee ? (
+                    ""
+                  ) : (
+                    <EditEmployee
+                      getEmployees={getEmployees}
+                      employee={employee}
+                      onClose={() => {
+                        setShowEditEmployee(false);
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>

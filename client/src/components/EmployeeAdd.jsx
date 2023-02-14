@@ -52,9 +52,9 @@ export default function EmployeeAdd({ getEmployees }) {
 
   return (
     <div className="py-3">
-      <div className="flex flex-col px-2">
+      <div className="flex flex-col px-2 min-h-full">
         <div className="overflow-x-auto">
-          <div className="p-1.5 w-2/3 inline-block align-middle">
+          <div className="p-1.5 lg:w-2/3 inline-block align-middle ">
             <div className="overflow-hidden">
               <div className="text-gray-400 text-center"></div>
               <div className="border-collapse">
