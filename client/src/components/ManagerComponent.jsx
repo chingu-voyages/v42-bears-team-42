@@ -27,7 +27,7 @@ export default function ManagerComponent() {
         </div>
       </div>
       <div className="tabContent h-full p-1 text-center">
-        { activeTab === 'scheduler' ? <Scheduler /> : <EmployeeManageComponent />
+        { activeTab === 'scheduler' ? <Scheduler /> : <EmployeeManageComponent /> }
       </div>
     </div>
   );
