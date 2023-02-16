@@ -11,18 +11,20 @@ const RoleRequirements = ({ roles }) => {
   }
 
   return (    
-    <div className="w-full text-md flex flex-row border-2 border-gray-600 mt-4 bg-gray-200 p-1 py-3 justify-between">
-      <div className="flex flex-row h-5/6">
-        <input type="text" value={newRole} placeholder="New Role" onChange={(e) => setNewRole(e.target.value)} className="bg-gray-200 font-semibold border-2 border-purple-700 border-r-0" />
-        <button className="font-bold border-2 border-purple-700 align-top p-1">+</button>
-      </div>
-      <div className="flex font-semibold pt-1">Requirements</div>
-      <div className="flex flex-row justify-between w-9/12 pr-4 pl-6 pt-1 mr-1.5">
-        {dailyRoles.map((activeRoles, dayIndex) => <RoleSelector key={dayIndex}
-                                                              dayIndex={dayIndex}
-                                                              activeRoles={activeRoles}
-                                                              options={roles}
-                                                              updateRequirements={updateRequirements}/>)}
+    <div className="w-full text-md flex flex-col border-2 border-purple-700 mt-4 bg-white rounded-lg">
+      <div className="text-center text-white w-full font-semibold p-1 bg-black rounded-t-md py-1">Requirements</div>
+      <div className="flex flex-row w-full">
+        <div className="flex flex-row flex-initial m-1 w-3/12 h-5/6">
+          <input type="text" value={newRole} placeholder="New Role" onChange={(e) => setNewRole(e.target.value)} className="flex flex-initial bg-white placeholder:pl-1 border-2 border-purple-700 border-r-0" />
+          <button className="flex flex-initial font-bold border-2 border-purple-700 align-top p-1">+</button>
+        </div>
+        <div className="flex w-9/12 mt-2">
+          {dailyRoles.map((activeRoles, dayIndex) => <RoleSelector key={dayIndex}
+                                                                dayIndex={dayIndex}
+                                                                activeRoles={activeRoles}
+                                                                options={roles}
+                                                                updateRequirements={updateRequirements}/>)}
+        </div>
       </div>
     </div>
   )

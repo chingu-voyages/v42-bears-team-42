@@ -50,7 +50,7 @@ export default function SignIn({ setContent }) {
           <h1 className="text-3xl font-semibold text-center">WELCOME</h1>
           <div className="w-full content-center">
             <div className="text-gray-400 text-center">
-              {error && <span className="text-red-900">{error}</span>}{" "}
+              {error && <span className="text-red-900">{error}</span>}
               {!error && <span>Sign In to put SAM to work!</span>}
             </div>
           </div>
