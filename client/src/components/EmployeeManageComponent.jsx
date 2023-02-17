@@ -28,20 +28,20 @@ export default function EmployeeManageComponent() {
 
   return (
     <>
-      <div>
+      <div className="">
         {/* Add an employee */}
         <EmployeeAdd getEmployees={getEmployees} />
         <div>
           <label className="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" value="" className="sr-only peer" />
             <div
-              className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+              className="w-11 h-6 bg-gray-400 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-400 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
               onClick={() => {
                 setShowInactiveEmployees(!showInactiveEmployees);
                 getEmployees();
               }}
             ></div>
-            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-900">
               Show Inactive Employees
             </span>
           </label>
@@ -57,10 +57,7 @@ export default function EmployeeManageComponent() {
                       {/* Table header */}
                       <tr>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          First name
-                        </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          Last Name
+                          Name
                         </th>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Email
@@ -69,7 +66,7 @@ export default function EmployeeManageComponent() {
                           Permissions
                         </th>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          Update
+                          Actions
                         </th>
                       </tr>
                     </thead>

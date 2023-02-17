@@ -54,7 +54,7 @@ export default function EmployeeAdd({ getEmployees }) {
     <div className="py-3">
       <div className="flex flex-col px-2 min-h-full">
         <div className="overflow-x-auto">
-          <div className="p-1.5 lg:w-2/3 inline-block align-middle ">
+          <div className="p-1.5 inline-block align-middle">
             <div className="overflow-hidden">
               <div className="text-gray-400 text-center"></div>
               <div className="border-collapse">
@@ -160,6 +160,9 @@ export default function EmployeeAdd({ getEmployees }) {
 
                         {/* Permission */}
                         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                          <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
+                            Permission
+                          </span>
                           <div className="relative lg:max-w-sm">
                             <select
                               onChange={(e) =>
