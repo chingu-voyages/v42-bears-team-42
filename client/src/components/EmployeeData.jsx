@@ -24,11 +24,7 @@ export default function EmployeeData({
         }
       >
         <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-          {data.firstName}
-        </td>
-
-        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
-          {data.lastName}
+          {data.firstName} {data.lastName}
         </td>
 
         <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">

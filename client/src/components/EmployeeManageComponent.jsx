@@ -28,7 +28,7 @@ export default function EmployeeManageComponent() {
 
   return (
     <>
-      <div>
+      <div className="">
         {/* Add an employee */}
         <EmployeeAdd getEmployees={getEmployees} />
         <div>
@@ -57,10 +57,7 @@ export default function EmployeeManageComponent() {
                       {/* Table header */}
                       <tr>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          First name
-                        </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          Last Name
+                          Name
                         </th>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Email
@@ -69,7 +66,7 @@ export default function EmployeeManageComponent() {
                           Permissions
                         </th>
                         <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          Update
+                          Actions
                         </th>
                       </tr>
                     </thead>
