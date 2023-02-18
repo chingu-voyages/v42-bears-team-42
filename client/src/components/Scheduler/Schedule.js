@@ -59,7 +59,7 @@ const Schedule = ({ employees, roles }) => {
                         value="Add Employee"
                         name="employees"
                         id="employees">
-                    <option selected disabled hidden>Add Employee</option>
+                    <option disabled hidden>Add Employee</option>
                     {employees.filter((employee) => !activeEmployees.some(test => test.fullName === employee.fullName))
                               .map((employee) =>
                       <option key={employee._id} value={employee.fullName}>{employee.fullName}</option> )}

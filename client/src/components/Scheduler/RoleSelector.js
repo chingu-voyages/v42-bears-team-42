@@ -37,7 +37,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
                 value="Add Req"
                 name="roles"
                 id="roles">
-                <option selected disabled hidden>Add Req</option>
+                <option disabled hidden>Add Req</option>
                 {options.filter((name, index) => index !== 0 && !activeRoles.some((role) => role.role === name))
                         .map((name) => <option key={name} value={name}>{name}</option> )}
         </select>
