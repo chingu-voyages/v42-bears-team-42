@@ -63,19 +63,19 @@ export default function EmployeeAdd({ getEmployees }) {
                     <thead>
                       {/* table title */}
                       <tr>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           First name
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Last Name
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Email
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Password
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Permission
                         </th>
                       </tr>
@@ -83,7 +83,7 @@ export default function EmployeeAdd({ getEmployees }) {
                     <tbody>
                       <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                         {/* First Name */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">
                             First Name
                           </span>
@@ -101,7 +101,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Last Name */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">
                             Last Name
                           </span>
@@ -119,7 +119,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Email */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
                             Email
                           </span>
@@ -139,7 +139,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Password */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
                             Password
                           </span>
@@ -159,7 +159,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Permission */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
                             Permission
                           </span>
