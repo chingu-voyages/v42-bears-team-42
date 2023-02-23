@@ -56,16 +56,16 @@ export default function EmployeeManageComponent() {
                     <thead className="sticky top-0">
                       {/* Table header */}
                       <tr>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Name
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Email
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
-                          Permissions
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                          Permission
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Actions
                         </th>
                       </tr>
