@@ -4,7 +4,7 @@ import RoleControl from './RoleControl';
 const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) => {
 
   const addRole = (role) => {
-    const newDay = activeRoles.concat({role: role, number: 1});
+    const newDay = activeRoles.concat({name: role, number: 1});
     updateRequirements(dayIndex, newDay);
   }
 
@@ -22,7 +22,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
     <div className="flow flow-column overflow-hidden flex-1 mr-2">
       <div className={(activeRoles.length < 1 ? 'hidden' : 'rounded-lg border-2 border-purple-700 mb-1')}>
         { activeRoles.map((role, roleIndex) =>{
-            return <RoleControl key={dayIndex + role.role}
+            return <RoleControl key={dayIndex + role.name}
                                 role={role}
                                 roleIndex={roleIndex}
                                 dayIndex={dayIndex}
@@ -38,7 +38,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
                 name="roles"
                 id="roles">
                 <option selected disabled hidden>Add Req</option>
-                {options.filter((name, index) => index !== 0 && !activeRoles.some((role) => role.role === name))
+                {options.filter((name, index) => index !== 0 && !activeRoles.some((role) => role.name === name))
                         .map((name) => <option key={name} value={name}>{name}</option> )}
         </select>
       </div>

@@ -60,12 +60,11 @@ const createWeekDaysArray = (date) => {
   return daysArr;
 }
 
-const Calender = () => {
+const Calender = ({ startOfWeekDate, setStartOfWeekDate}) => {
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
   const [monthsDisplayed, setMonthsDisplayed] = useState([]);
   const [daysOfWeek, setDaysOfWeek] = useState([]);
-  const [startOfWeekDate, setStartOfWeekDate] = useState(null);
 
   const incrementWeek = () => {
     const date = new Date(startOfWeekDate);

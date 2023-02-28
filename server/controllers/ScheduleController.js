@@ -2,9 +2,9 @@ import Schedule from '../models/ScheduleModel.js';
 
 const createSchedule = async (req, res) => {
   try {
-    const { start, focus, days } = req.body;
-    const schedule = await Schedule.create({ start: Date.parse(start), focus, days });
-    res.status(200).send('Schedule created');
+    const { start, employee_id, days } = req.body;
+    const schedule = await Schedule.create({ start: Date.parse(start), employee_id, days });
+    res.status(200).json({_id: schedule._id, employee_id: schedule.employee_id});
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Schedule from './ScheduleModel.js'
 
 const RoleRequirements = new mongoose.Schema({
-  roles: [{name: String, number: number}]
+  roles: [{name: String, number: Number}]
 });
 
 const ScheduleGroupSchema = new mongoose.Schema({

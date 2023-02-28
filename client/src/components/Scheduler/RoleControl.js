@@ -19,7 +19,7 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
       if (index !== roleIndex) {
         return role;
       } else {
-        return {role: role.role, number: number}
+        return {name: role.name, number: number}
       }
     });
     updateRequirements(dayIndex, newActiveRoles);
@@ -29,7 +29,7 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
     <div className={`flex flex-row w-full bg-white
                    ${roleIndex === 0 ? 'rounded-t-md' : ''}
                    ${roleIndex + 1 === activeRoles.length ? 'rounded-b-md' : ''}`}>
-      <div className='basis-9/12 text-left text-sm pl-1'>{role.role}</div>
+      <div className='basis-9/12 text-left text-sm pl-1'>{role.name}</div>
       <input type="text" value={inputValue} maxLength="2" className={`w-2/12 outline-none text-black text-sm text-right text-bottom mr-1 bg-white`}
         onInput={(e) => {setRoleNumber(e.target.value)}}>
       </input>

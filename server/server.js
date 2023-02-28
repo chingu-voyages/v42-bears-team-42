@@ -7,7 +7,7 @@ import EmployeeRouter from "./routes/EmployeeRouter.js";
 import RoleRouter from "./routes/RoleRouter.js";
 import TimeOffRequestRouter from "./routes/TimeOffRequestRouter.js";
 import ScheduleRouter from "./routes/ScheduleRouter.js";
-import ScheduleTemplateRouter from "./routes/ScheduleTemplateRouter.js";
+import ScheduleGroupRouter from "./routes/ScheduleGroupRouter.js";
 import AuthRouter from "./routes/AuthRouter.js";
 
 dotenv.config();
@@ -40,7 +40,7 @@ app.use("/api/Employee", EmployeeRouter);
 app.use("/api/Role", RoleRouter);
 app.use("/api/TimeOffRequest", TimeOffRequestRouter);
 app.use("/api/Schedule", ScheduleRouter);
-app.use("/api/ScheduleTemplate", ScheduleTemplateRouter);
+app.use("/api/ScheduleGroup", ScheduleGroupRouter);
 app.use("/api/Auth", AuthRouter);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
