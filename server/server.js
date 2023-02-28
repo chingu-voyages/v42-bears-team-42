@@ -6,12 +6,13 @@ import mongoose from "mongoose";
 import EmployeeRouter from "./routes/EmployeeRouter.js";
 import RoleRouter from "./routes/RoleRouter.js";
 import TimeOffRequestRouter from "./routes/TimeOffRequestRouter.js";
-import ScheduleTemplateRouter from "./routes/ScheduleTemplateRouter.js";
+import ScheduleRouter from "./routes/ScheduleRouter.js";
+import ScheduleGroupRouter from "./routes/ScheduleGroupRouter.js";
 import AuthRouter from "./routes/AuthRouter.js";
 
 dotenv.config();
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -38,7 +39,8 @@ app.get("/api/", sendApiDoc);
 app.use("/api/Employee", EmployeeRouter);
 app.use("/api/Role", RoleRouter);
 app.use("/api/TimeOffRequest", TimeOffRequestRouter);
-app.use("/api/ScheduleTemplate", ScheduleTemplateRouter);
+app.use("/api/Schedule", ScheduleRouter);
+app.use("/api/ScheduleGroup", ScheduleGroupRouter);
 app.use("/api/Auth", AuthRouter);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

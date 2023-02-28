@@ -2,7 +2,6 @@ import Employee from "../models/EmployeeModel.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 
-// TODO: Confirm res status codes
 const signUp = async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
   const dupEmail = await Employee.findOne({ email });
@@ -22,7 +21,8 @@ const signUp = async (req, res, next) => {
   });
 
   // This needs to be tested. Is there an error to send here?
-  if (!employee) return res.status(500).json({ success: false, error: error.message });
+  if (!employee)
+    return res.status(500).json({ success: false, error: error.message });
 
   // Email address verification: clicking link/button in email should auto-sign in user
 
@@ -53,9 +53,7 @@ const signIn = async (req, res, next) => {
         .json({ success: false, error: "Invalid credentials" });
 
     const token = employee.generateAuthToken();
-    res
-      .status(200)
-      .json({ success: true, employee, token });
+    res.status(200).json({ success: true, employee, token });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
@@ -76,7 +74,7 @@ const forgotPassword = async (req, res, next) => {
     await employee.save();
 
     // Create email
-    const resetURL = `https://v42-bears-team-42-production.up.railway.app/resetpassword/${resetToken}`;
+    const resetURL = `${process.env.SAM_FE_URL}/resetpassword/${resetToken}`;
     const message = `
       <h1>Password reset requested</h1>
       <p>A password reset request was submitted, for this email address, to SAM.
@@ -94,7 +92,6 @@ const forgotPassword = async (req, res, next) => {
       res
         .status(200)
         .json({ success: true, data: "Password Reset email sent" });
-
     } catch (error) {
       employee.resetPasswordToken = undefined;
       employee.resetPasswordExpire = undefined;
