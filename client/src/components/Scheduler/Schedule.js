@@ -54,7 +54,7 @@ const Schedule = ({ employees, roles }) => {
         <div className="flex flex-row w-full rounded-b-md py-2 bg-black">
           <div className="flex flex-row basis-3/12">
             {/* Employee Selector */}
-            <select className="appearance-none pl-1 flex flex-initial cursor-pointer min-h-0 max-h-[28px] min-w-0 max-w-[115px] mx-1 text-sm rounded-full border-2 border-purple-700 outline-none"
+            <select className="pl-1 flex flex-initial cursor-pointer min-h-0 max-h-[28px] min-w-0 max-w-[115px] mx-1 text-sm rounded-full border-2 border-purple-700 outline-none"
                         onChange={(e) => addEmployee({fullName:e.target.value, _id: e.target.key})}
                         value="Add Employee"
                         name="employees"
