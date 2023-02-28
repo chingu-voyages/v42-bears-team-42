@@ -140,9 +140,11 @@ const Calender = () => {
         </button>
         {/* Month Control */}
         <div className="flex flex-row">
+          { monthsDisplayed[0] !== monthsDisplayed[1] && <span className="text-purple-400">{monthsDisplayed[0] + ' / '}</span> }
           {/* { 
             monthsDisplayed.length > 1 && <span className="text-purple-400">{monthsDisplayed[0] + ' / '}</span>
           } */}
+          <span className="text-purple-700 pl-1">{monthsDisplayed[1]}</span>
           {/* <span className="text-purple-400">{monthsDisplayed[0]}</span> + '  /  ' + <span className="">{monthsDisplayed[1]}</span> */}
           <select className="flex-1 bg-black cursor-pointer text-purple-700 text-right"
                   onChange={(e) => monthSelect(e.target.value)}
