@@ -110,11 +110,13 @@ const Calender = ({ startOfWeekDate, setStartOfWeekDate}) => {
     }
     return tally;
   }
+  
  
   //initialize calender date
   useEffect(() => {
     const today = new Date();
-    setStartOfWeekDate(firstDateOfWeek(today));
+    const start = firstDateOfWeek(today);
+    setStartOfWeekDate(start);
   },[])
 
   //update calender date

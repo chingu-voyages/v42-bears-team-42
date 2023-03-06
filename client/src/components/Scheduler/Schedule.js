@@ -4,18 +4,18 @@ import RoleSelector from './RoleSelector';
 
 const newWorkWeek = () => ['Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off'];
 
-const Schedule = ({ employees, roles, startOfWeekDate, postNewSchedule }) => {
-  const [activeEmployees, setActiveEmployees] = useState([]);
-  const [workWeeks, setWorkWeeks] = useState([]);
+const Schedule = ({ employees, roles, startOfWeekDate, postNewSchedule, activeEmployees, setActiveEmployees, workWeeks, setWorkWeeks, dailyRoles, setDailyRoles }) => {
+  //const [activeEmployees, setActiveEmployees] = useState([]);
+  //const [workWeeks, setWorkWeeks] = useState([]);
   const [newRole, setNewRole] = useState('');
-  const [dailyRoles, setDailyRoles] = useState([[],[],[],[],[],[],[]]);
+  //const [dailyRoles, setDailyRoles] = useState([[],[],[],[],[],[],[]]);
 
-    //TODO: remove when done debugging
-    useEffect(() => {
-      console.log(activeEmployees)
-      console.log(workWeeks)
-      console.log(dailyRoles)
-    },[activeEmployees, workWeeks, dailyRoles]);
+  //TODO: remove when done debugging
+  useEffect(() => {
+    console.log(activeEmployees)
+    console.log(workWeeks)
+    console.log(dailyRoles)
+  },[activeEmployees, workWeeks, dailyRoles]);
 
   const saveSchedule = () => {
     //map data to DB models
