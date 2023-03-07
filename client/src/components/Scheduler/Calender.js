@@ -184,7 +184,7 @@ const Calender = () => {
             </svg>
           </button>
         </div>
-        <div className="w-9/12 pr-3">
+        <div className="w-9/12 justify-between">
           <div className="w-full flex justify-between text-xl">
             {days.map((day) => <div key={day} className="flex-1">{day}</div>)}
           </div>

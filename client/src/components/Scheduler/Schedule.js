@@ -66,7 +66,7 @@ const Schedule = ({ employees, roles }) => {
             </select>
           </div>
           {/* Requirements Setters */}
-          <div className="flex basis-9/12 min-h-0 min-w-0">
+          <div className="flex basis-9/12 min-h-0 min-w-0 justify-between">
             {dailyRoles.map((activeRoles, dayIndex) => <RoleSelector key={dayIndex}
                                                                   dayIndex={dayIndex}
                                                                   activeRoles={activeRoles}
