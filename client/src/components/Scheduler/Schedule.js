@@ -52,9 +52,9 @@ const Schedule = ({ employees, roles }) => {
                                     updateWorkWeek={updateWorkWeek}/>
         })}
         <div className="flex flex-row w-full rounded-b-md py-2 bg-black">
-          <div className="flex flex-row basis-3/12">
+          <div className="flex flex-row basis-2/12 pr-1">
             {/* Employee Selector */}
-            <select className="pl-1 flex flex-initial cursor-pointer min-h-0 max-h-[28px] min-w-0 max-w-[120px] mx-1 text-sm rounded-full border-2 border-purple-700 outline-none"
+            <select className="w-full pl-1 flex flex-initial cursor-pointer min-h-0 max-h-[28px] ml-1 text-sm rounded-full border-2 border-purple-700 outline-none"
                         onChange={(e) => addEmployee({fullName:e.target.value, _id: e.target.key})}
                         value="Add Employee"
                         name="employees"
@@ -64,15 +64,6 @@ const Schedule = ({ employees, roles }) => {
                               .map((employee) =>
                       <option key={employee._id} value={employee.fullName}>{employee.fullName}</option> )}
             </select>
-            {/* New Role Field */}
-            <div className="bg-white flex text-sm text-left ml-3 rounded-full border-2 border-purple-700 max-h-[28px]">
-              <input type="text" value={newRole} placeholder="New Role" onChange={(e) => setNewRole(e.target.value)}  className="w-[140px] max-h-[28px] outline-0 border-none rounded-full pl-1 placeholder:text-black" />
-              <button className="">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-purple-700">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
           </div>
           {/* Requirements Setters */}
           <div className="flex basis-9/12 min-h-0 min-w-0">
@@ -82,6 +73,15 @@ const Schedule = ({ employees, roles }) => {
                                                                   options={roles}
                                                                   updateRequirements={updateRequirements}/>)}
           </div>
+          {/* New Role Field */}
+          {/* <div className="bg-white flex text-sm text-left rounded-full border-2 border-purple-700 max-h-[28px] max-w-[20px]">
+            <input type="text" value={newRole} placeholder="New Role" onChange={(e) => setNewRole(e.target.value)}  className="w-[140px] max-h-[28px] outline-0 border-none rounded-full pl-1 placeholder:text-black" />
+            <button className="">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-purple-700">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </div> */}
         </div>
       </div>
     </>

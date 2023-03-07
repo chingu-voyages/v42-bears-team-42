@@ -80,20 +80,20 @@ const Calender = () => {
     setStartOfWeekDate(date);
   }
 
-  const setCalenderDates = (date) => {
-    if (date) {
-      let lastDay = new Date(date);
-      lastDay.setDate(lastDay.getDate() + 6);
-      setYear(lastDay.getFullYear());
+  // const setCalenderDates = (date) => {
+  //   if (date) {
+  //     let lastDay = new Date(date);
+  //     lastDay.setDate(lastDay.getDate() + 6);
+  //     setYear(lastDay.getFullYear());
 
-      const startDate = firstDateOfWeek(date);
-      const daysArray = createWeekDaysArray(startDate)
-      setDaysOfWeek(daysArray);
-      let months = tallyMonthsDisplayed(daysArray);
-      setMonthsDisplayed(months);
-      console.log('')
-    }
-  }
+  //     const startDate = firstDateOfWeek(date);
+  //     const daysArray = createWeekDaysArray(startDate)
+  //     setDaysOfWeek(daysArray);
+  //     let months = tallyMonthsDisplayed(daysArray);
+  //     setMonthsDisplayed(months);
+  //     console.log('')
+  //   }
+  // }
 
   const monthSelect = (newMonth) => {
     const date = new Date();
@@ -126,6 +126,21 @@ const Calender = () => {
 
   //update calender date
   useEffect(() => {
+    const setCalenderDates = (date) => {
+      if (date) {
+        let lastDay = new Date(date);
+        lastDay.setDate(lastDay.getDate() + 6);
+        setYear(lastDay.getFullYear());
+
+        const startDate = firstDateOfWeek(date);
+        const daysArray = createWeekDaysArray(startDate)
+        setDaysOfWeek(daysArray);
+        let months = tallyMonthsDisplayed(daysArray);
+        setMonthsDisplayed(months);
+        console.log('')
+      }
+    }
+
     setCalenderDates(startOfWeekDate);
   }, [startOfWeekDate])
 
@@ -133,12 +148,6 @@ const Calender = () => {
     <>
       <div className='flex justify-between w-full p-1 border-2 border-purple-700 border-b-0 rounded-t-lg text-2xl bg-black'>
         <div className='flex justify-between'>
-          {/* < Button */}
-          <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={decrementWeek}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
           {/* Save Button */}
           <button className="text-xs font-semibold border-2 border-purple-700 rounded-full ml-1 bg-purple-400 py-0 px-4"
                   onClick={()=> console.log('saving')}>
@@ -163,16 +172,19 @@ const Calender = () => {
                   onClick={()=> console.log('saving')}>
             Send
           </button>
-          {/* > Button */}
-          <button className="px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={incrementWeek}>
+
+        </div>
+      </div>
+      <div className="flex w-full border-purple-700 border-x-2 bg-white">
+        <div className="flex w-2/12 justify-start">
+          {/* < Button */}
+          <button className="px-1 m-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={decrementWeek}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
         </div>
-      </div>
-      <div className="flex justify-end w-full border-purple-700 border-x-2 bg-white">
-        <div className="w-9/12">
+        <div className="w-9/12 pr-3">
           <div className="w-full flex justify-between text-xl">
             {days.map((day) => <div key={day} className="flex-1">{day}</div>)}
           </div>
@@ -186,12 +198,18 @@ const Calender = () => {
             })}
           </div>
         </div>
+        <div className='flex w-1/12 justify-end'>
+          {/* > Button */}
+          <button className="max-h-min px-1 m-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700" onClick={incrementWeek}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+        </div>
       </div>
     </>
 
   )
 }
 
-//px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700
-//px-1 mx-1 border-solid border-2 border-purple-700 rounded-lg text-purple-700
 export default Calender;
