@@ -8,7 +8,7 @@ const EmployeeService = {
   changePassword,
   getAll,
   editEmployee,
-  deactivateEmployee,
+  changeEmployeeStatus,
 };
 
 const BASE_URL = `${process.env.REACT_APP_BE_URL}/api/Employee`;
@@ -64,8 +64,8 @@ function changePassword(id, newPassword) {
   }).then((response) => {
     if (response.ok) return response.json();
     console.log(response, "error in changePassword utils");
-  })
-};  
+  });
+}
 
 function getAll() {
   const authToken = TokenService.getAuthToken();
@@ -97,7 +97,7 @@ function editEmployee(id, firstName, lastName, email, permissions) {
   });
 }
 
-function deactivateEmployee(id, active) {
+function changeEmployeeStatus(id, active) {
   const authToken = TokenService.getAuthToken();
   return fetch(`${process.env.REACT_APP_BE_URL}/api/Employee/${id}`, {
     method: "PUT",

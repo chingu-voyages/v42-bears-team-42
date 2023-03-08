@@ -52,10 +52,10 @@ export default function EmployeeAdd({ getEmployees }) {
 
   return (
     <div className="py-3">
-      <div className="flex flex-col px-2">
+      <div className="flex flex-col px-2 min-h-full">
         <div className="overflow-x-auto">
-          <div className="p-1.5 w-full inline-block align-middle">
-            <div className="overflow-hidden  rounded-lg">
+          <div className="p-1.5 inline-block align-middle">
+            <div className="overflow-hidden">
               <div className="text-gray-400 text-center"></div>
               <div className="border-collapse">
                 <form onSubmit={handleCreateEmployee}>
@@ -63,19 +63,19 @@ export default function EmployeeAdd({ getEmployees }) {
                     <thead>
                       {/* table title */}
                       <tr>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           First name
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Last Name
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Email
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Password
                         </th>
-                        <th className="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">
+                        <th className="p-2 font-bold uppercase bg-gray-200 text-gray-600 border border-purple-700 hidden lg:table-cell">
                           Permission
                         </th>
                       </tr>
@@ -83,7 +83,7 @@ export default function EmployeeAdd({ getEmployees }) {
                     <tbody>
                       <tr className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                         {/* First Name */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">
                             First Name
                           </span>
@@ -101,7 +101,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Last Name */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold ">
                             Last Name
                           </span>
@@ -119,7 +119,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Email */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
                             Email
                           </span>
@@ -139,7 +139,7 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Password */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
                           <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
                             Password
                           </span>
@@ -159,7 +159,10 @@ export default function EmployeeAdd({ getEmployees }) {
                         </td>
 
                         {/* Permission */}
-                        <td className="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                        <td className="w-full lg:w-auto p-2 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                          <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold">
+                            Permission
+                          </span>
                           <div className="relative lg:max-w-sm">
                             <select
                               onChange={(e) =>
@@ -171,20 +174,11 @@ export default function EmployeeAdd({ getEmployees }) {
                               className="lg:w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
                             >
                               <option value="" selected disabled>
-                                Set permission
+                                Permission
                               </option>
                               <option value="manager">Manager</option>
                               <option value="employee">Employee</option>
                             </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                              <svg
-                                className="fill-current h-4 w-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                              </svg>
-                            </div>
                           </div>
                         </td>
                       </tr>
@@ -194,7 +188,7 @@ export default function EmployeeAdd({ getEmployees }) {
                     <button
                       type="submit"
                       value="Submit"
-                      className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                      className="flex ml-auto text-white bg-purple-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
                     >
                       Add Employee
                     </button>

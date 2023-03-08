@@ -15,7 +15,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-auto w-auto">
       <div className="h-1/6">
         <Header employee={employee} />
       </div>
