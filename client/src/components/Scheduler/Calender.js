@@ -153,6 +153,11 @@ const Calender = () => {
                   onClick={()=> console.log('saving')}>
             Save
           </button>
+          {/* Open Template Button */}
+          <button className="text-xs font-semibold border-2 border-purple-700 rounded-full ml-1 bg-purple-400 py-0 px-4"
+                  onClick={()=> console.log('saving')}>
+            Open Template
+          </button>
         </div>
         {/* Month Control */}
         <div className="flex flex-row">
@@ -167,12 +172,16 @@ const Calender = () => {
           <div className="text-purple-700 ml-4">{year}</div>
         </div>
         <div className="flex justify-between">
+          {/* Generate Button */}
+          <button className="text-xs font-semibold border-2 border-purple-700 rounded-full ml-1 bg-purple-400 py-0 px-4 mr-1"
+                  onClick={()=> console.log('saving')}>
+            Generate
+          </button>
           {/* Send Button */}
           <button className="text-xs font-semibold border-2 border-purple-700 rounded-full mr-1 bg-purple-400 py-0 px-4"
                   onClick={()=> console.log('saving')}>
             Send
           </button>
-
         </div>
       </div>
       <div className="flex w-full border-purple-700 border-x-2 bg-white">
