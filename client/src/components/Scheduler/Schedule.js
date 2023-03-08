@@ -1,18 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EmployeeWorkWeek from './EmployeeWorkWeek';
 import RoleSelector from './RoleSelector';
 
 const newWorkWeek = () => ['Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off'];
 
-const Schedule = ({ employees, roles }) => {
-  const [activeEmployees, setActiveEmployees] = useState([]);
-  const [workWeeks, setWorkWeeks] = useState([]);
+const Schedule = ({ employees, roles, startOfWeekDate, postNewSchedule, activeEmployees, setActiveEmployees, workWeeks, setWorkWeeks, dailyRoles, setDailyRoles }) => {
+  //const [activeEmployees, setActiveEmployees] = useState([]);
+  //const [workWeeks, setWorkWeeks] = useState([]);
   const [newRole, setNewRole] = useState('');
-  const [dailyRoles, setDailyRoles] = useState([[],[],[],[],[],[],[]]);
+  //const [dailyRoles, setDailyRoles] = useState([[],[],[],[],[],[],[]]);
 
-  const addEmployee = (employee) => {
-    console.log(employee)
-    setActiveEmployees(activeEmployees.concat(employee));
+  //TODO: remove when done debugging
+  useEffect(() => {
+    console.log(activeEmployees)
+    console.log(workWeeks)
+    console.log(dailyRoles)
+  },[activeEmployees, workWeeks, dailyRoles]);
+
+  const saveSchedule = () => {
+    //map data to DB models
+    const employeeWeeks = activeEmployees.map((employee, index) => {
+      return {start: startOfWeekDate, employee_id: employee._id, days: workWeeks[index]}
+    }) //TODO: start date needs to be accessed from calender
+    const dailyRoleReqs = dailyRoles.map((day) => { return {roles: day} })
+    console.log(employeeWeeks, dailyRoleReqs)
+    postNewSchedule(employeeWeeks, dailyRoleReqs, startOfWeekDate);
+  }
+
+  const addEmployee = (employeeData) => {
+    const splitData = employeeData.split(' ');
+    const _id = splitData[splitData.length -1];
+    const name = splitData.slice(0,-1).join(' ');  //rejoin name strings
+    setActiveEmployees(activeEmployees.concat({fullName: name, _id: _id}));
     //create new employee work week
     const newArray = workWeeks.slice();
     newArray.push(newWorkWeek());
@@ -22,9 +41,7 @@ const Schedule = ({ employees, roles }) => {
   const removeEmployee = (removeIndex) => {
     const newEmployeesArray = activeEmployees.filter((employee, index) => index !== removeIndex);
     setActiveEmployees(newEmployeesArray);
-    //console.log('old:', workWeeks)
     const newWorkWeekArray = workWeeks.filter((workWeek, index) => index !== removeIndex);
-    //console.log('new:', newWorkWeekArray);
     setWorkWeeks(newWorkWeekArray);
   }
 
@@ -55,14 +72,14 @@ const Schedule = ({ employees, roles }) => {
           <div className="flex flex-row basis-2/12 pr-1">
             {/* Employee Selector */}
             <select className="w-full pl-1 flex flex-initial cursor-pointer min-h-0 max-h-[28px] ml-1 text-sm rounded-full border-2 border-purple-700 outline-none"
-                        onChange={(e) => addEmployee({fullName:e.target.value, _id: e.target.key})}
+                        onChange={(e) => addEmployee(e.target.value)}
                         value="Add Employee"
                         name="employees"
                         id="employees">
                     <option disabled hidden>Add Employee</option>
                     {employees.filter((employee) => !activeEmployees.some(test => test.fullName === employee.fullName))
                               .map((employee) =>
-                      <option key={employee._id} value={employee.fullName}>{employee.fullName}</option> )}
+                      <option key={employee._id} value={`${employee.fullName} ${employee._id}`}>{employee.fullName}</option> )}
             </select>
           </div>
           {/* Requirements Setters */}
@@ -84,6 +101,7 @@ const Schedule = ({ employees, roles }) => {
           </div> */}
         </div>
       </div>
+      <button onClick={saveSchedule}>Save</button>
     </>
   )
 }
