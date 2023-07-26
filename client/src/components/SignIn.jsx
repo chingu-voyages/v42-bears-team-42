@@ -17,15 +17,15 @@ export default function SignIn({ setContent }) {
   };
 
   const demoEmployeeClick = () => {
-    console.log(process.env);
-    setEmail(process.env.DEMO_EMPLOYEE_EMAIL || "t@gmail.com");
-    setPassword(process.env.DEMO_EMPLOYEE_PASSWORD || "pass");
+    console.log(DEMO_EMPLOYEE_EMAIL, DEMO_EMPLOYEE_PASSWORD);
+    setEmail(DEMO_EMPLOYEE_EMAIL || "ge@gmail.com");
+    setPassword(DEMO_EMPLOYEE_PASSWORD || "pass");
   }
 
   const demoManagerClick = () => {
-    console.log(process.env);
-    setEmail(process.env.DEMO_MANAGER_EMAIL || "t@gmail.com");
-    setPassword(process.env.DEMO_MANAGER_PASSWORD || "pass");
+    console.log(DEMO_MANAGER_EMAIL, DEMO_MANAGER_PASSWORD );
+    setEmail(DEMO_MANAGER_EMAIL || "gm@gmail.com");
+    setPassword(DEMO_MANAGER_PASSWORD || "pass");
   }
 
   const signInHandler = async (e) => {
