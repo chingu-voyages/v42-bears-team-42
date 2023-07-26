@@ -16,6 +16,16 @@ export default function SignIn({ setContent }) {
     return setError(message);
   };
 
+  const demoEmployeeClick = () => {
+	  setEmail(process.env.DEMO_EMPLOYEE_EMAIL);
+	  setPassword(process.env.DEMO_EMPLOYEE_PASSWORD);
+  }
+
+  const demoManagerClick = () => {
+    setEmail(process.env.DEMO_MANAGER_EMAIL);
+    setPassword(process.env.DEMO_MANAGER_PASSWORD);
+  }
+
   const signInHandler = async (e) => {
     e.preventDefault();
 
@@ -62,6 +72,7 @@ export default function SignIn({ setContent }) {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
@@ -73,6 +84,7 @@ export default function SignIn({ setContent }) {
               <input
                 type="password"
                 placeholder="Password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
               />
@@ -109,10 +121,14 @@ export default function SignIn({ setContent }) {
           <div id="demos" className="py-10">
             <h6 className="text-center py-1">Demo Users:</h6>
             <div id="demoBtns" className="flex flex-row-1 justify-between">
-              <button className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
+              <button
+                onClick={demoManagerClick}
+                className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
                 Manager
               </button>
-              <button className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
+              <button
+                onClick={demoEmployeeClick}
+                className="mb-1.5 block w-1/3 text-center text-white bg-purple-700 hover:bg-purple-900 px-2 py-1.5 rounded-md">
                 Employee
               </button>
             </div>
