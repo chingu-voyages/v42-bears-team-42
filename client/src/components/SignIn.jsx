@@ -17,13 +17,13 @@ export default function SignIn({ setContent }) {
   };
 
   const demoEmployeeClick = () => {
-    console.log(process.env.DEMO_EMPLOYEE_EMAIL, process.env.DEMO_EMPLOYEE_PASSWORD,process.env.REACT_APP_BE_URL);
+    console.log(process.env);
     setEmail(process.env.DEMO_EMPLOYEE_EMAIL || "t@gmail.com");
     setPassword(process.env.DEMO_EMPLOYEE_PASSWORD || "pass");
   }
 
   const demoManagerClick = () => {
-    console.log(process.env.DEMO_MANAGER_EMAIL, process.env.DEMO_MANAGER_PASSWORD,process.env.REACT_APP_BE_URL);
+    console.log(process.env);
     setEmail(process.env.DEMO_MANAGER_EMAIL || "t@gmail.com");
     setPassword(process.env.DEMO_MANAGER_PASSWORD || "pass");
   }
