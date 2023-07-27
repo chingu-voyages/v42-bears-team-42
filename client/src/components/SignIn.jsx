@@ -18,14 +18,14 @@ export default function SignIn({ setContent }) {
 
   const demoEmployeeClick = (e) => {
     e.preventDefault();
-    setEmail(process.env.DEMO_EMPLOYEE_EMAIL || "ge@gmail.com");
-    setPassword(process.env.DEMO_EMPLOYEE_PASSWORD || "pass");
+    setEmail(process.env.REACT_APP_GE_EMAIL);
+    setPassword(process.env.REACT_APP_GE_PASSWORD);
   }
 
   const demoManagerClick = (e) => {
     e.preventDefault();
-    setEmail(process.env.DEMO_MANAGER_EMAIL || "gm@gmail.com");
-    setPassword(process.env.DEMO_MANAGER_PASSWORD || "pass");
+    setEmail(process.env.REACT_APP_GM_EMAIL);
+    setPassword(process.env.REACT_APP_GM_PASSWORD);
   }
 
   const signInHandler = async (e) => {
