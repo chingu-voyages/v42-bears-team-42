@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import RoleControl from './RoleControl';
 //[{role: string, number: number},{},{}]
-const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) => {
+const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles, workWeeks }) => {
 
   const addRole = (role) => {
     const newDay = activeRoles.concat({name: role, number: 1});
@@ -27,6 +27,7 @@ const RoleSelector = ({ options, dayIndex, updateRequirements, activeRoles }) =>
             return <RoleControl key={dayIndex + role.name}
                                 role={role}
                                 roleIndex={roleIndex}
+                                workWeeks={workWeeks}
                                 dayIndex={dayIndex}
                                 activeRoles={activeRoles}
                                 updateRequirements={updateRequirements}/>
