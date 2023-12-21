@@ -26,13 +26,13 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
   }
 
   const isHighlighted = (name, number, dayIndex) => {
-    roleCount = {};
-    for (let person = 0; person < workWeek.length; person++) {
+    const roleCount = {};
+    for (let person = 0; person < workWeeks.length; person++) {
       const role = workWeeks[person][dayIndex];
       if (roleCount[role.name]) {
-        roleCount[dayName]++
+        roleCount[role.name]++
       } else {
-        roleCount[day.name] = 1;
+        roleCount[role.name] = 1;
       }
     }
     console.log("roleCount:", roleCount);
