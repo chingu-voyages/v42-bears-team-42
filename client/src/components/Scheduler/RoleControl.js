@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirements}) => {
+const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirements, workWeeks}) => {
   const [inputValue, setInputValue] = useState(0);
 
   // const validateInput = (value) => {
@@ -25,11 +25,34 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
     updateRequirements(dayIndex, newActiveRoles);
   }
 
+  const isHighlighted = (name, number, dayIndex) => {
+    roleCount = {};
+    for (let person = 0; person < workWeek.length; person++) {
+      const role = workWeeks[person][dayIndex];
+      if (roleCount[role.name]) {
+        roleCount[dayName]++
+      } else {
+        roleCount[day.name] = 1;
+      }
+    }
+    console.log("roleCount:", roleCount);
+
+    if (number > 0) {
+      if (roleCount[name] && roleCount[name] < number) {
+        return " text-red"
+      } else if (!roleCount[name]){
+        return " text-red"
+      } else {
+        return "";
+      }
+    }
+  }
+
   return (
     <div className={`flex flex-row w-full bg-white
                    ${roleIndex === 0 ? 'rounded-t-md' : ''}
                    ${roleIndex + 1 === activeRoles.length ? 'rounded-b-md' : ''}`}>
-      <div className='basis-9/12 text-left text-sm pl-1'>{role.name}</div>
+      <div className={'basis-9/12 text-left text-sm pl-1' + isHighlighted(role.name, role.number, dayIndex)}>{role.name}</div>
       <input type="text" value={inputValue} maxLength="2" className={`w-2/12 outline-none text-black text-sm text-right text-bottom mr-1 bg-white`}
         onInput={(e) => {setRoleNumber(e.target.value)}}>
       </input>

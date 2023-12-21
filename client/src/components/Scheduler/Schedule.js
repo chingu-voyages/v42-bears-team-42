@@ -5,11 +5,8 @@ import RoleSelector from './RoleSelector';
 const newWorkWeek = () => ['Off', 'Off', 'Off', 'Off', 'Off', 'Off', 'Off'];
 
 const Schedule = ({ employees, roles, startOfWeekDate, postNewSchedule, activeEmployees, setActiveEmployees, workWeeks, setWorkWeeks, dailyRoles, setDailyRoles }) => {
-  //const [activeEmployees, setActiveEmployees] = useState([]);
-  //const [workWeeks, setWorkWeeks] = useState([]);
   const [newRole, setNewRole] = useState('');
-  //const [dailyRoles, setDailyRoles] = useState([[],[],[],[],[],[],[]]);
-
+  
   //TODO: remove when done debugging
   useEffect(() => {
     console.log(activeEmployees)
@@ -86,6 +83,7 @@ const Schedule = ({ employees, roles, startOfWeekDate, postNewSchedule, activeEm
           <div className="flex basis-9/12 min-h-0 min-w-0 justify-between">
             {dailyRoles.map((activeRoles, dayIndex) => <RoleSelector key={dayIndex}
                                                                   dayIndex={dayIndex}
+                                                                  workWeeks={workWeeks}
                                                                   activeRoles={activeRoles}
                                                                   options={roles}
                                                                   updateRequirements={updateRequirements}/>)}
