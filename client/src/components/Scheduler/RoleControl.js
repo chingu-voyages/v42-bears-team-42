@@ -26,26 +26,30 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
   }
 
   const isHighlighted = (name, number, dayIndex) => {
-    console.log("name:" + name, "number:" + number);
-    const roleCount = {};
+    console.log("name:" + name, "number:" + number, "index:" + index);
+    let roleCount = {};
     for (let person = 0; person < workWeeks.length; person++) {
       const role = workWeeks[person][dayIndex];
       console.log("role " + role);
-      if (roleCount[role]) {
-        roleCount[role]++
-      } else if (roleCount[role] !== undefined){
+      if (Object.hasOwn(roleCount, role)) {
+        console.log("add 1 " + role);
+        roleCount[role] += 1;
+      } else {
+        console.log("add new " + role);
         roleCount[role] = 1;
       }
     }
-    console.log("roleCount:", roleCount);
+    for (const role in roleCount) {
+      console.log(`${role}: ${roleCount[role]}`);
+    }
 
     if (number > 0) {
       if (roleCount[name] && roleCount[name] < number) {
         console.log(name + " too few")
-        return " text-red"
+        return " text-red-700"
       } else if (!roleCount[name]){
-        console.log(name + " too few")
-        return " text-red"
+        console.log(name + " not found")
+        return " text-red-700"
       } else {
         return "";
       }
