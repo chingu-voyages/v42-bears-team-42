@@ -26,12 +26,14 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
   }
 
   const isHighlighted = (name, number, dayIndex) => {
+    console.log("name:" + name, "number:" + number);
     const roleCount = {};
     for (let person = 0; person < workWeeks.length; person++) {
       const role = workWeeks[person][dayIndex];
+      console.log("role" + role);
       if (roleCount[role.name]) {
         roleCount[role.name]++
-      } else {
+      } else if (roleCount[role.name] !== undefined){
         roleCount[role.name] = 1;
       }
     }
@@ -39,8 +41,10 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
 
     if (number > 0) {
       if (roleCount[name] && roleCount[name] < number) {
+        console.log(name + " too few")
         return " text-red"
       } else if (!roleCount[name]){
+        console.log(name + " too few")
         return " text-red"
       } else {
         return "";
