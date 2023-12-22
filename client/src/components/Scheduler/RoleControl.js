@@ -30,11 +30,11 @@ const RoleControl = ({ role, roleIndex, dayIndex, activeRoles, updateRequirement
     const roleCount = {};
     for (let person = 0; person < workWeeks.length; person++) {
       const role = workWeeks[person][dayIndex];
-      console.log("role" + role);
-      if (roleCount[role.name]) {
-        roleCount[role.name]++
-      } else if (roleCount[role.name] !== undefined){
-        roleCount[role.name] = 1;
+      console.log("role " + role);
+      if (roleCount[role]) {
+        roleCount[role]++
+      } else if (roleCount[role] !== undefined){
+        roleCount[role] = 1;
       }
     }
     console.log("roleCount:", roleCount);
